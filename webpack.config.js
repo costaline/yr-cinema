@@ -132,8 +132,7 @@ module.exports = (env = {}, { mode } = {}) => {
       minimizer: [new TerserPlugin()],
 
       splitChunks: {
-        chunks: 'all',
-        name: false
+        chunks: 'all'
       },
 
       runtimeChunk: {
@@ -161,23 +160,25 @@ module.exports = (env = {}, { mode } = {}) => {
         '~utils': path.resolve(__dirname, 'src/utils')
       }
     }
-    // analog: .babelrc -> plugins
-    // install "babel-plugin-module-resolver"
-    /* ,[
-      "module-resolver",
-      {
-        "root": ["."],
-        "alias": {
-          "~src": "./src",
-          "~public": "./public",
-          "~components": "./src/components",
-          "~hocs": "./src/hocs",
-          "~routes": "./src/routes",
-          "~services": "./src/services",
-          "~store": "./src/store",
-          "~utils": "./src/utils"
-        }
-      }
-    ] */
   };
 };
+
+// analog resolve-alias: 
+// install "babel-plugin-module-resolver"
+// .babelrc -> plugins
+/*[
+  "module-resolver",
+  {
+    "root": ["."],
+    "alias": {
+      "~src": "./src",
+      "~public": "./public",
+      "~components": "./src/components",
+      "~hocs": "./src/hocs",
+      "~routes": "./src/routes",
+      "~services": "./src/services",
+      "~store": "./src/store",
+      "~utils": "./src/utils"
+    }
+  }
+] */
