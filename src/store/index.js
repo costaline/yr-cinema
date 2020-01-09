@@ -3,7 +3,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 
+import { filmsReducer } from '~store/films/reducer';
+
 const rootReducer = combineReducers({
+  films: filmsReducer,
   form: formReducer
 });
 
