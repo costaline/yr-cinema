@@ -128,7 +128,7 @@ module.exports = (env = {}, { mode } = {}) => {
     plugins: getPlugins(),
 
     optimization: {
-      minimize: true,
+      minimize: isProduction ? true : false,
       minimizer: [new TerserPlugin()],
 
       splitChunks: {
@@ -163,7 +163,7 @@ module.exports = (env = {}, { mode } = {}) => {
   };
 };
 
-// analog resolve-alias: 
+// analog resolve-alias:
 // install "babel-plugin-module-resolver"
 // .babelrc -> plugins
 /*[
