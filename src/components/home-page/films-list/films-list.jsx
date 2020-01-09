@@ -14,7 +14,7 @@ export const FilmsList = ({ films }) => {
           posterURL
         };
 
-        return <FilmsItem key={film._id} {...filmsItemProps} />;
+        return <FilmsItem key={film.filmId} {...filmsItemProps} />;
       })}
     </section>
   );
@@ -23,8 +23,8 @@ export const FilmsList = ({ films }) => {
 FilmsList.propTypes = {
   films: T.arrayOf(
     T.shape({
-      name: T.string.isRequired,
-      posterURL: T.string.isRequired
+      name: T.string,
+      posterURL: T.string
     })
   )
 };

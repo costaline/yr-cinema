@@ -11,8 +11,8 @@ const FilmsItem = ({ name, posterURL }) => (
 );
 
 FilmsItem.propTypes = {
-  name: T.string.isRequired,
-  posterURL: T.string.isRequired
+  name: T.string,
+  posterURL: T.string
 };
 
 export default FilmsItem;

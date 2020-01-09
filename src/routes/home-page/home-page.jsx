@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import T from 'prop-types';
 
 import { FilmsList } from '~components/home-page/films-list';
 import { withErrorBoundary } from '~hocs/with-error-boundary';
+import { fetchFilms } from '~store/films/actions';
+import { getFilms, getLoading, getError } from '~store/films/selectors';
+import { Loader } from '~components/shared/loader';
+import { ErrorMessage } from '~components/shared/error-message';
 
-const HomePage = () => {
-  return <FilmsList films={films} />;
+const HomePage = ({ fetchFilms, films, loading, error }) => {
+  useEffect(() => {
+    fetchFilms();
+  }, []);
+
+  return (
+    <div>
+      {loading && <Loader />}
+      {error && <ErrorMessage />}
+      <FilmsList films={films} />
+    </div>
+  );
 };
 
-export default withErrorBoundary(HomePage);
+HomePage.propTypes = {
+  fetchFilms: T.func.isRequired,
+  films: T.array.isRequired,
+  loading: T.bool.isRequired,
+  error: T.shape({
+    message: T.string
+  })
+};
 
-const films = [
-  {
-    _id: 'j3kj434',
-    name: 'film one',
-    year: 2020,
-    slogan: 'start',
-    country: 'Canada',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quisquam similique tenetur laudantium. Reiciendis, at? ',
-    posterURL:
-      'https://avatars.mds.yandex.net/get-pdb/1626167/e7b329e1-7be3-442b-a64e-2b60011ea78b/s1200'
-  },
-  {
-    _id: '4j3kj43i4',
-    name: 'film three',
-    year: 2019,
-    slogan: 'here we start',
-    country: 'USA',
-    description:
-      'Vel odit ipsa optio tenetur eveniet laborum molestiae? Hic aliquam necessitatibus, reiciendis commodi amet ipsum.',
-    posterURL:
-      'https://avatars.mds.yandex.net/get-pdb/1626167/e7b329e1-7be3-442b-a64e-2b60011ea78b/s1200'
-  }
-];
+const mapStateToProps = (state) => {
+  return {
+    films: getFilms(state),
+    loading: getLoading(state),
+    error: getError(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchFilms }, dispatch);
+};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withErrorBoundary
+)(HomePage);
