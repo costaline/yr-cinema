@@ -1,0 +1,25 @@
+.navbar {
+  background-color: #2d79ff;
+  height: 56px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  & a {
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+.brand {
+  font-size: 1.5rem;
+}
+
+.active {
+  opacity: 0.5;
+}
