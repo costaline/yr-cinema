@@ -1,11 +1,12 @@
 import React from 'react';
 import T from 'prop-types';
+import styled from 'styled-components';
 
 import FilmsItem from '~components/home-page/films-item';
 
 export const FilmsList = ({ films }) => {
   return (
-    <section>
+    <StyledSection>
       {films.map((film) => {
         const { name, posterURL } = film;
 
@@ -16,7 +17,7 @@ export const FilmsList = ({ films }) => {
 
         return <FilmsItem key={film.filmId} {...filmsItemProps} />;
       })}
-    </section>
+    </StyledSection>
   );
 };
 
@@ -28,3 +29,9 @@ FilmsList.propTypes = {
     })
   )
 };
+
+const StyledSection = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
