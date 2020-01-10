@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../public/fonts/lato-regular-webfont.woff') format('woff');
+  src: url('../../public/fonts/lato-regular-webfont.woff2') format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: sans-serif;
+}
+
+li {
+  list-style: none;
+}
