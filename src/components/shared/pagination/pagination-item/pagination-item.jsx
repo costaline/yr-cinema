@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PaginationItem = ({ page, currentPage, url }) => {
+const PaginationItem = ({ page, currentPage = 1 }) => {
   return (
     <li>
-      <Link to={`${url}?page=${page}`}>{page}</Link>
+      <Link to={`/?page=${page}`}>{page}</Link>
     </li>
   );
 };

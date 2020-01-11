@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import T from 'prop-types';
+import queryString from 'query-string';
 
 import { FilmsList } from '~components/home-page/films-list';
 import { withErrorBoundary } from '~hocs/with-error-boundary';
@@ -17,17 +18,22 @@ import { ErrorMessage } from '~components/shared/error-message';
 import Pagination from '~components/shared/pagination/pagination';
 
 const HomePage = ({ fetchFilms, films = [], total, loading, error }) => {
-  useEffect(() => {
-    fetchFilms();
-  }, []);
+  const parsedQuery = queryString.parse(location.search);
 
+  const currentPage = Number(parsedQuery.page);
+
+  useEffect(() => {
+    fetchFilms(currentPage);
+  }, [currentPage]);
 
   return (
     <div>
       {loading && <Loader />}
       {error && <ErrorMessage />}
-      <FilmsList films={films} />
-      {!loading && total && <Pagination total={total} limit={5} url="/" currentPage={1} />}
+      {!loading && <FilmsList films={films} />}
+      {!loading && total && (
+        <Pagination total={total} limit={5} currentPage={currentPage} />
+      )}
     </div>
   );
 };

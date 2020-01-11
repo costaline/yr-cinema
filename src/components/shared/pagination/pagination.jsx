@@ -4,7 +4,7 @@ import T from 'prop-types';
 
 import PaginationItem from './pagination-item';
 
-const Pagination = ({ total, limit, url, currentPage }) => {
+const Pagination = ({ total, limit, currentPage }) => {
   const pagesCount = Math.ceil(total / limit);
 
   const pages = R.range(1, pagesCount + 1);
@@ -12,12 +12,7 @@ const Pagination = ({ total, limit, url, currentPage }) => {
   return (
     <ul>
       {pages.map((page) => (
-        <PaginationItem
-          page={page}
-          currentPage={currentPage}
-          url={url}
-          key={page}
-        />
+        <PaginationItem key={page} page={page} currentPage={currentPage} />
       ))}
     </ul>
   );
@@ -26,7 +21,6 @@ const Pagination = ({ total, limit, url, currentPage }) => {
 Pagination.propTypes = {
   total: T.number,
   limit: T.number,
-  url: T.any,
   currentPage: T.number
 };
 
