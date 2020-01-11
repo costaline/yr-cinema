@@ -17,7 +17,7 @@ const limit = 5;
 const sortDirection = 1;
 
 // имитация получение ресурса по частям
-const getResource = async (resource, currentPage = 1) => {
+const getResource = async (resource, currentPage) => {
   // получаем ВСЕ данные о ресурсе с сервера
   const response = await firebase.get(`${resource}s.json`);
 
@@ -29,12 +29,6 @@ const getResource = async (resource, currentPage = 1) => {
 
   // определяем количество элементов
   const total = sortedData.length;
-
-  // определяем количество страниц
-  const pagesCount = Math.ceil(total / limit);
-
-  // заполняем массив страниц
-  const pages = range(1, pagesCount);
 
   // получаем начальную точку загрузки
   const startValue = sortedData[(currentPage - 1) * limit].timestamp;
@@ -77,9 +71,4 @@ const transformData = (data, resource) => {
 // сортировка массива по timestamp
 const sortData = (data, sortDirection = 1) => {
   return data.sort((a, b) => (a.timestamp - b.timestamp) * sortDirection);
-};
-
-// заполнение массива страниц
-const range = (start, end) => {
-  return [...Array(end).keys()].map((el) => el + start);
 };
