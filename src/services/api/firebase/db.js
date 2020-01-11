@@ -55,10 +55,12 @@ const getResource = async (resource, currentPage = 1) => {
   const transformedChunkData = transformData(chunkResponse.data, resource);
 
   // сортируем по timestamp
-  const sortedChunkData = sortData(transformedChunkData, sortDirection);
-  console.log('sortedChunkData: ', sortedChunkData);
+  const data = sortData(transformedChunkData, sortDirection);
+  // console.log('sortedChunkData: ', data);
 
-  return sortedChunkData;
+  const filmsData = { data, total };
+
+  return filmsData;
 };
 
 // дополнительные функции -----------------------------------------------

@@ -1,7 +1,7 @@
 import * as A from './action-types';
 
 const initialState = {
-  films: [],
+  films: {},
   loading: false,
   error: null
 };
@@ -15,7 +15,7 @@ const handlers = {
 
   [A.FETCH_FILMS_SUCCESS]: (state, payload) => ({
     ...state,
-    films: payload.films,
+    films: payload.filmsData,
     loading: false
   }),
 

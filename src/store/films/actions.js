@@ -8,10 +8,10 @@ const fetchFilmsStart = () => {
   };
 };
 
-const fetchFilmsSuccess = (films) => {
+const fetchFilmsSuccess = (filmsData) => {
   return {
     type: A.FETCH_FILMS_SUCCESS,
-    films
+    filmsData
   };
 };
 
@@ -26,8 +26,9 @@ export const fetchFilms = () => async (dispatch) => {
   dispatch(fetchFilmsStart());
 
   try {
-    const films = await api.db.getResource('film');
-    dispatch(fetchFilmsSuccess(films));
+    const filmsData = await api.db.getResource('film');
+    console.log(filmsData);
+    dispatch(fetchFilmsSuccess(filmsData));
   } catch (err) {
     dispatch(fetchFilmsFailure(err));
   }
