@@ -9,6 +9,7 @@ import { fetchFilms } from '~store/films/actions';
 import { getFilms, getLoading, getError } from '~store/films/selectors';
 import { Loader } from '~components/shared/loader';
 import { ErrorMessage } from '~components/shared/error-message';
+import Pagination from '~components/shared/pagination/pagination';
 
 const HomePage = ({ fetchFilms, films, loading, error }) => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const HomePage = ({ fetchFilms, films, loading, error }) => {
       {loading && <Loader />}
       {error && <ErrorMessage />}
       <FilmsList films={films} />
+      {!loading && <Pagination total={10} limit={5} url="/" currentPage={1} />}
     </div>
   );
 };
