@@ -1,10 +1,13 @@
 import React from 'react';
+import * as R from 'ramda';
+import T from 'prop-types';
+
 import PaginationItem from './pagination-item';
 
 const Pagination = ({ total, limit, url, currentPage }) => {
   const pagesCount = Math.ceil(total / limit);
 
-  const pages = range(1, pagesCount);
+  const pages = R.range(1, pagesCount + 1);
 
   return (
     <ul>
@@ -20,8 +23,11 @@ const Pagination = ({ total, limit, url, currentPage }) => {
   );
 };
 
-export default Pagination;
-
-const range = (start, end) => {
-  return [...Array(end).keys()].map((el) => el + start);
+Pagination.propTypes = {
+  total: T.number,
+  limit: T.number,
+  url: T.any,
+  currentPage: T.number
 };
+
+export default Pagination;
