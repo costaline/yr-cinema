@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, compose } from 'redux';
+import { compose } from 'redux';
 import T from 'prop-types';
 import queryString from 'query-string';
 
@@ -18,9 +18,10 @@ import { ErrorMessage } from '~components/shared/error-message';
 import Pagination from '~components/shared/pagination/pagination';
 
 const HomePage = ({ fetchFilms, films = [], total, loading, error }) => {
+  // TODO: вынести определение текущей страницы в hoc
   const parsedQuery = queryString.parse(location.search);
 
-  const currentPage = Number(parsedQuery.page);
+  const currentPage = Number(parsedQuery.page) || 1;
 
   useEffect(() => {
     fetchFilms(currentPage);
@@ -31,7 +32,7 @@ const HomePage = ({ fetchFilms, films = [], total, loading, error }) => {
       {loading && <Loader />}
       {error && <ErrorMessage />}
       {!loading && <FilmsList films={films} />}
-      {!loading && total && (
+      {total && (
         <Pagination total={total} limit={5} currentPage={currentPage} />
       )}
     </div>
@@ -56,10 +57,6 @@ const mapStateToProps = (state) => {
     error: getError(state)
   };
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators(, dispatch);
-// };
 
 export default compose(
   connect(mapStateToProps, { fetchFilms }),

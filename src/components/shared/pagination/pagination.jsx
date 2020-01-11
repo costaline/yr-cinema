@@ -25,7 +25,7 @@ Pagination.propTypes = {
   currentPage: T.number
 };
 
-export default Pagination;
+export default React.memo(Pagination);
 
 const StyledUl = styled.ul`
   display: flex;

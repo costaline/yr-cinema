@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import T from 'prop-types';
 import styled from 'styled-components';
 
-const PaginationItem = ({ page, currentPage = 1 }) => {
+const PaginationItem = ({ page, currentPage }) => {
   return (
     <StyledLi page={page} currentPage={currentPage}>
       <Link to={`/?page=${page}`}>{page}</Link>
     </StyledLi>
   );
+};
+
+PaginationItem.propTypes = {
+  page: T.number,
+  currentPage: T.number
 };
 
 export default PaginationItem;

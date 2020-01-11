@@ -52,9 +52,7 @@ const getResource = async (resource, currentPage) => {
   const data = sortData(transformedChunkData, sortDirection);
   // console.log('sortedChunkData: ', data);
 
-  const filmsData = { data, total };
-
-  return filmsData;
+  return { data, total };
 };
 
 // дополнительные функции -----------------------------------------------
