@@ -25,7 +25,8 @@ plugins:
   - prettier
 rules:
   no-unused-vars: 1
+  no-console: 1
   react/display-name: 1
   react/jsx-key: 1
   react/prop-types: 1
-  prettier/prettier: warn
+  prettier/prettier: 1
