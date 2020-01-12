@@ -26,6 +26,7 @@ const StyledLi = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   margin: 2px;
   background-color: ${({ page, currentPage }) =>
     page === currentPage ? 'lightblue' : 'lightgoldenrodyellow'};
@@ -36,6 +37,9 @@ const StyledLi = styled.li`
   }
 
   & a {
+    display: block;
+    padding: 10px;
+    text-align: center;
     text-decoration: none;
     color: inherit;
   }
