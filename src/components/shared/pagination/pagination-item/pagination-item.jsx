@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import T from 'prop-types';
 import styled from 'styled-components';
 
-const PaginationItem = ({ page, currentPage }) => {
+const PaginationItem = ({ page, currentPage, querySettings }) => {
   return (
     <StyledLi page={page} currentPage={currentPage}>
-      <Link to={`/?page=${page}`}>{page}</Link>
+      <Link to={`/?${querySettings}&page=${page}`}>{page}</Link>
     </StyledLi>
   );
 };

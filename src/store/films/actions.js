@@ -22,11 +22,11 @@ const fetchFilmsFailure = (error) => {
   };
 };
 
-export const fetchFilms = (currentPage) => async (dispatch) => {
+export const fetchFilms = (currentQuery) => async (dispatch) => {
   dispatch(fetchFilmsStart());
 
   try {
-    const filmsData = await api.db.getResource('film', currentPage);
+    const filmsData = await api.db.getResource('film', currentQuery);
 
     dispatch(fetchFilmsSuccess(filmsData));
   } catch (err) {

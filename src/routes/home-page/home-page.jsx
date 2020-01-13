@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import T from 'prop-types';
-import queryString from 'query-string';
 import styled from 'styled-components';
 
 import { FilmsList } from '~components/home-page/films-list';
@@ -17,16 +16,23 @@ import {
 import { Loader } from '~components/shared/loader';
 import { ErrorMessage } from '~components/shared/error-message';
 import Pagination from '~components/shared/pagination/pagination';
+import { getPaginator } from '~utils/pagination';
 
-const HomePage = ({ fetchFilms, films = [], total, loading, error }) => {
-  // TODO: вынести определение текущей страницы в hoc
-  const parsedQuery = queryString.parse(location.search);
-
-  const currentPage = Number(parsedQuery.page) || 1;
+const HomePage = ({
+  fetchFilms,
+  films = [],
+  total,
+  loading,
+  error,
+  location
+}) => {
+  const currentQuery = useMemo(() => getPaginator(location.search), [
+    location.search
+  ]);
 
   useEffect(() => {
-    fetchFilms(currentPage);
-  }, [currentPage]);
+    fetchFilms(currentQuery);
+  }, [fetchFilms, currentQuery]);
 
   return (
     <>
@@ -37,7 +43,12 @@ const HomePage = ({ fetchFilms, films = [], total, loading, error }) => {
       </StyledContent>
 
       {total && (
-        <Pagination total={total} limit={5} currentPage={currentPage} />
+        <Pagination
+          total={total}
+          limit={currentQuery.currentLimit}
+          currentPage={currentQuery.currentPage}
+          sort={currentQuery.currentSort}
+        />
       )}
     </>
   );
@@ -50,6 +61,9 @@ HomePage.propTypes = {
   loading: T.bool.isRequired,
   error: T.shape({
     message: T.string
+  }),
+  location: T.shape({
+    search: T.string
   })
 };
 

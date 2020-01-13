@@ -4,16 +4,24 @@ import T from 'prop-types';
 import styled from 'styled-components';
 
 import PaginationItem from './pagination-item';
+import { stringify } from 'query-string';
 
-const Pagination = ({ total, limit, currentPage }) => {
+const Pagination = ({ total, limit, currentPage, sort }) => {
   const pagesCount = Math.ceil(total / limit);
 
   const pages = R.range(1, pagesCount + 1);
 
+  const querySettings = stringify({ limit, sort });
+
   return (
     <StyledUl>
       {pages.map((page) => (
-        <PaginationItem key={page} page={page} currentPage={currentPage} />
+        <PaginationItem
+          key={page}
+          page={page}
+          querySettings={querySettings}
+          currentPage={currentPage}
+        />
       ))}
     </StyledUl>
   );
