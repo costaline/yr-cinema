@@ -1,15 +1,15 @@
 import React from 'react';
-import * as R from 'ramda';
+import { stringify } from 'query-string';
 import T from 'prop-types';
 import styled from 'styled-components';
 
 import PaginationItem from './pagination-item';
-import { stringify } from 'query-string';
+import { getRange } from '~utils/pagination';
 
 const Pagination = ({ total, limit, currentPage, sort }) => {
   const pagesCount = Math.ceil(total / limit);
 
-  const pages = R.range(1, pagesCount + 1);
+  const pages = getRange(1, pagesCount);
 
   const querySettings = stringify({ limit, sort });
 
@@ -30,7 +30,8 @@ const Pagination = ({ total, limit, currentPage, sort }) => {
 Pagination.propTypes = {
   total: T.number,
   limit: T.number,
-  currentPage: T.number
+  currentPage: T.number,
+  sort: T.oneOf([1, -1])
 };
 
 export default React.memo(Pagination);

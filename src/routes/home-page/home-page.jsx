@@ -15,18 +15,13 @@ import {
 } from '~store/films/selectors';
 import { Loader } from '~components/shared/loader';
 import { ErrorMessage } from '~components/shared/error-message';
-import Pagination from '~components/shared/pagination/pagination';
-import { getPaginator } from '~utils/pagination';
+import Pagination from '~components/shared/pagination';
+import { getPagination } from '~utils/pagination';
 
-const HomePage = ({
-  fetchFilms,
-  films = [],
-  total,
-  loading,
-  error,
-  location
-}) => {
-  const currentQuery = useMemo(() => getPaginator(location.search), [
+const HomePage = (props) => {
+  const { fetchFilms, films = [], total, loading, error, location } = props;
+
+  const currentQuery = useMemo(() => getPagination(location.search), [
     location.search
   ]);
 
@@ -59,9 +54,7 @@ HomePage.propTypes = {
   films: T.array,
   total: T.number,
   loading: T.bool.isRequired,
-  error: T.shape({
-    message: T.string
-  }),
+  error: T.string,
   location: T.shape({
     search: T.string
   })

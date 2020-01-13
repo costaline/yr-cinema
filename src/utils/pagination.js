@@ -1,6 +1,6 @@
 import { parse } from 'query-string';
 
-export const getPaginator = (search) => {
+export const getPagination = (search) => {
   const { page, limit, sort } = parse(search);
 
   const currentPage = page ? Number(page) : 1;
@@ -8,4 +8,8 @@ export const getPaginator = (search) => {
   const currentSort = sort ? Number(sort) : 1;
 
   return { currentPage, currentLimit, currentSort };
+};
+
+export const getRange = (start, end) => {
+  return [...Array(end).keys()].map((key) => key + start);
 };

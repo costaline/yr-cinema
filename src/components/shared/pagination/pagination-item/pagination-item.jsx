@@ -13,7 +13,8 @@ const PaginationItem = ({ page, currentPage, querySettings }) => {
 
 PaginationItem.propTypes = {
   page: T.number,
-  currentPage: T.number
+  currentPage: T.number,
+  querySettings: T.string
 };
 
 export default PaginationItem;
