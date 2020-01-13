@@ -1,6 +1,6 @@
 import { stringify } from 'query-string';
 
-import { db } from './connect';
+import { dbGet } from './connect';
 
 import { transformData, sortData } from './utils';
 
@@ -18,10 +18,11 @@ import { transformData, sortData } from './utils';
 export const getResource = async (resource, currentQuery) => {
   const { currentPage, currentLimit, currentSort } = currentQuery;
   /** get ALL resource data from the server */
-  const response = await db.get(`${resource}s.json`);
+  const baseRequestUrl = `${resource}s.json`;
+  const resourceData = await dbGet(baseRequestUrl);
 
   /** convert to an array of objects */
-  const transformedData = transformData(response.data, resource);
+  const transformedData = transformData(resourceData, resource);
 
   /** sort by timestamp */
   const sortedData = sortData(transformedData, currentSort);
@@ -41,12 +42,11 @@ export const getResource = async (resource, currentQuery) => {
   const queryRequest = stringify(queryData);
 
   /** get PART of the resource data from the server */
-  const chunkResponse = await db.get(
-    `${resource}s.json/?orderBy="timestamp"&${queryRequest}`
-  );
+  const chunkRequestUrl = `${baseRequestUrl}/?orderBy="timestamp"&${queryRequest}`;
+  const chunkResourceData = await dbGet(chunkRequestUrl);
 
   /** convert to an array of objects */
-  const transformedChunkData = transformData(chunkResponse.data, resource);
+  const transformedChunkData = transformData(chunkResourceData, resource);
 
   /** sort by timestamp */
   const data = sortData(transformedChunkData, currentSort);
