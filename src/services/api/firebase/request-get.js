@@ -4,45 +4,52 @@ import { db } from './connect';
 
 import { transformData, sortData } from './utils';
 
-// имитация получение ресурса по частям
+/**
+ * imitation of receiving a resource in PARTS
+ * @param {string} resource                   - the name of the resource in
+ * the singular for the formation of the identifier in the kind of
+ * [resourceName]Id
+ * @param {Object} currentQuery               - current query params
+ * @param {number} currentQuery.currentPage   - current page
+ * @param {number} currentQuery.currentLimit  - current limit
+ * @param {number} currentQuery.currentSort   - current sort direction
+ * @returns {{data: Array, total: number}}
+ */
 export const getResource = async (resource, currentQuery) => {
-  // получаем ВСЕ данные о ресурсе с сервера
+  const { currentPage, currentLimit, currentSort } = currentQuery;
+  /** get ALL resource data from the server */
   const response = await db.get(`${resource}s.json`);
 
-  // преобразуем в массив объектов
+  /** convert to an array of objects */
   const transformedData = transformData(response.data, resource);
 
-  // сортируем по timestamp
-  const sortedData = sortData(transformedData, currentQuery.currentSort);
+  /** sort by timestamp */
+  const sortedData = sortData(transformedData, currentSort);
 
-  // определяем количество элементов
+  /** determine the number of elements */
   const total = sortedData.length;
 
-  // получаем начальную точку загрузки
-  const startValue =
-    sortedData[(currentQuery.currentPage - 1) * currentQuery.currentLimit]
-      .timestamp;
+  /** get the starting point of loading */
+  const startValue = sortedData[(currentPage - 1) * currentLimit].timestamp;
 
-  // формируем запрос
+  /** form a request data */
   const queryData = {
-    [currentQuery.currentSort === 1
-      ? 'limitToFirst'
-      : 'limitToLast']: currentQuery.currentLimit,
-    [currentQuery.currentSort === 1 ? 'startAt' : 'endAt']: startValue
+    [currentSort === 1 ? 'limitToFirst' : 'limitToLast']: currentLimit,
+    [currentSort === 1 ? 'startAt' : 'endAt']: startValue
   };
+  /** request data to string */
   const queryRequest = stringify(queryData);
 
-  // получаем часть данных о ресурсе с сервера
+  /** get PART of the resource data from the server */
   const chunkResponse = await db.get(
     `${resource}s.json/?orderBy="timestamp"&${queryRequest}`
   );
 
-  // преобразуем в массив объектов
+  /** convert to an array of objects */
   const transformedChunkData = transformData(chunkResponse.data, resource);
 
-  // сортируем по timestamp
-  const data = sortData(transformedChunkData, currentQuery.currentSort);
-  // console.log('sortedChunkData: ', data);
+  /** sort by timestamp */
+  const data = sortData(transformedChunkData, currentSort);
 
   return { data, total };
 };
