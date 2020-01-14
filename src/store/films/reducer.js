@@ -1,6 +1,6 @@
 import * as A from './action-types';
 
-const initialState = {
+export const initialState = {
   films: {},
   loading: false,
   error: null
