@@ -1,21 +1,20 @@
 import * as A from './action-types';
-
 import * as api from '~services/api';
 
-const fetchFilmsStart = () => {
+export const fetchFilmsStart = () => {
   return {
     type: A.FETCH_FILMS_START
   };
 };
 
-const fetchFilmsSuccess = (filmsData) => {
+export const fetchFilmsSuccess = (filmsData) => {
   return {
     type: A.FETCH_FILMS_SUCCESS,
     filmsData
   };
 };
 
-const fetchFilmsFailure = (error) => {
+export const fetchFilmsFailure = (error) => {
   return {
     type: A.FETCH_FILMS_FAILURE,
     error
