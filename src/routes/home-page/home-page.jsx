@@ -69,6 +69,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+export { HomePage };
+
 export default compose(
   connect(mapStateToProps, { fetchFilms }),
   withErrorBoundary
