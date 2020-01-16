@@ -57,20 +57,32 @@ describe('Test films fetch', () => {
 
   it('Fetch fetchFilmsMock success', async () => {
     const store = mockStore({});
-
-    const fetchFilms = store.dispatch(fetchFilmsMock('films.json'));
-
     const responseData = { data: {}, total: 3 };
-
     const expectedActions = [
       fetchFilmsStart(),
       fetchFilmsSuccess(responseData)
     ];
 
-    mockAxios.mockResponse({ data: responseData });
+    const fetchFilms = store.dispatch(fetchFilmsMock('films.json'));
+
+    mockAxios.mockResponse({ status: 200, data: responseData });
 
     await fetchFilms;
 
     expect(store.getActions()).toEqual(expectedActions);
+  });
+
+  it('Fetch fetchFilmsMock failure', async () => {
+    const store = mockStore({});
+
+    const fetchFilms = store.dispatch(fetchFilmsMock('films.json'));
+
+    mockAxios.mockError();
+
+    await fetchFilms;
+
+    expect(store.getActions()).toHaveLength(2);
+    expect(store.getActions()[0].type).toEqual(A.FETCH_FILMS_START);
+    expect(store.getActions()[1].type).toBe(A.FETCH_FILMS_FAILURE);
   });
 });
