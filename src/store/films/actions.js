@@ -1,5 +1,6 @@
 import * as A from './action-types';
 import * as api from '~services/api';
+import { dbGet } from '~services/api/firebase/connect';
 
 export const fetchFilmsStart = () => {
   return {
@@ -21,6 +22,7 @@ export const fetchFilmsFailure = (error) => {
   };
 };
 
+/** receiving data with simulating pagination  */
 export const fetchFilms = (currentQuery) => async (dispatch) => {
   dispatch(fetchFilmsStart());
 
@@ -28,6 +30,19 @@ export const fetchFilms = (currentQuery) => async (dispatch) => {
     const filmsData = await api.db.getResource('film', currentQuery);
 
     dispatch(fetchFilmsSuccess(filmsData));
+  } catch (err) {
+    dispatch(fetchFilmsFailure(err));
+  }
+};
+
+/** receiving data without simulating pagination  */
+export const fetchFilmsMock = (url) => async (dispatch) => {
+  dispatch(fetchFilmsStart());
+
+  try {
+    const data = await dbGet(url);
+
+    dispatch(fetchFilmsSuccess(data));
   } catch (err) {
     dispatch(fetchFilmsFailure(err));
   }

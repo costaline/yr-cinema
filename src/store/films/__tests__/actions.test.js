@@ -1,13 +1,15 @@
+import mockAxios from 'jest-mock-axios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import fetchMock from 'fetch-mock';
 
 import {
   fetchFilmsStart,
   fetchFilmsSuccess,
-  fetchFilmsFailure
+  fetchFilmsFailure,
+  fetchFilmsMock
 } from '../actions';
 import * as A from '../action-types';
+import { dbGet } from '~services/api/firebase/connect';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -34,20 +36,36 @@ describe('Test films actions', () => {
   });
 });
 
-describe('Test fetch films', () => {
-  afterEach(() => {
-    fetchMock.reset();
-    fetchMock.restore();
+describe('Test films fetch', () => {
+  it('example get request', async () => {
+    // call an async method which calls axios.get and returns the result
+    const promise = dbGet('films.json');
+
+    // mock response
+    mockAxios.mockResponse({ data: 'test' });
+
+    const result = await promise;
+
+    expect(result).toEqual('test');
+    expect(mockAxios.get).toHaveBeenCalled();
   });
 
-  it('Fetch films', () => {
-    console.log(
-      'fetch films is imitation of receiving a resource in PARTS,' +
-        ' need to refactor...'
-    );
-    fetchMock.getOnce('', {
-      headers: { 'content-type': 'application/json' },
-      body: {}
-    });
+  it('Fetch fetchFilmsMock success', async () => {
+    const store = mockStore({});
+
+    const fetchFilms = store.dispatch(fetchFilmsMock('films.json'));
+
+    const responseData = { data: {}, total: 3 };
+
+    const expectedActions = [
+      fetchFilmsStart(),
+      fetchFilmsSuccess(responseData)
+    ];
+
+    mockAxios.mockResponse({ data: responseData });
+
+    await fetchFilms;
+
+    expect(store.getActions()).toEqual(expectedActions);
   });
 });
