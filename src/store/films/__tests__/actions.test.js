@@ -37,6 +37,11 @@ describe('Test films actions', () => {
 });
 
 describe('Test films fetch', () => {
+  afterEach(() => {
+    // cleaning up the mess left behind the previous test
+    mockAxios.reset();
+  });
+
   it('example get request', async () => {
     // call an async method which calls axios.get and returns the result
     const promise = dbGet('films.json');
