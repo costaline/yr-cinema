@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Page with... Error message render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <ErrorMessage />
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Home Page with... Films list render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <FilmsList
+      films={
+        Array [
+          Object {
+            "name": "name1",
+          },
+          Object {
+            "name": "name1",
+          },
+        ]
+      }
+    />
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Home Page with... Loader render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <Loader />
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Home Page with... Pagination render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <FilmsList
+      films={Array []}
+    />
+  </styled.div>
+  <Memo(Pagination)
+    currentPage={1}
+    limit={5}
+    sort={1}
+    total={3}
+  />
+</Fragment>
+`;
