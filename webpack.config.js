@@ -4,51 +4,80 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env = {}, { mode } = {}) => {
+  /** Path to output file(s) */
+  const pathToOutputFile = {
+    fonts: 'static/fonts/',
+    js: 'static/js/',
+    css: 'static/css/'
+  };
+  /** Build mode */
   const isProduction = mode === 'production';
-
-  // module -> rules -> /\.(sa|sc|c)ss$/ -> use
-  const getUseForStyle = ({ isModule = false } = {}) => [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: process.env.NODE_ENV === 'development',
-        publicPath: '../../'
+  /** Bundle stats */
+  const showTreemap = !!env.treemap;
+  /** Filename */
+  const name = isProduction ? '[contenthash:6]' : '[name]';
+  /**
+   * Alias
+   * @param {string} pathToAlias
+   * @returns {string}
+   */
+  const getAlias = (pathToAlias) => path.resolve(__dirname, pathToAlias);
+  /**
+   * Style loaders
+   * @param {boolean} isModule
+   * @param {null | 'sass'} preprocessor
+   * @returns {{loader: string}[]}
+   */
+  const getStyleLoaders = ({ isModule = false, preprocessor = null } = {}) => {
+    const loaders = [
+      {
+        loader: 'css-loader',
+        options: {
+          modules: isModule && {
+            localIdentName: `${name}${
+              isProduction ? '' : '__[local]--[hash:base64:5]'
+            }`
+          },
+          sourceMap: !isProduction
+        }
       }
-    },
+    ];
 
-    {
-      loader: 'css-loader',
-      options: {
-        modules: isModule
-          ? {
-              localIdentName: isProduction
-                ? '[hash:base64:5]'
-                : '[name]__[local]--[hash:base64:5]'
-            }
-          : false,
-        sourceMap: true
-      }
-    },
+    isProduction
+      ? loaders.unshift({
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: process.env.NODE_ENV === 'development',
+            publicPath: '../../'
+          }
+        })
+      : loaders.unshift({
+          loader: 'style-loader'
+        });
 
-    {
-      loader: 'postcss-loader',
-      options: { sourceMap: true }
-    },
-    {
-      loader: 'sass-loader',
-      options: { sourceMap: true }
-    }
-  ];
+    isProduction &&
+      loaders.push({
+        loader: 'postcss-loader',
+        options: { sourceMap: !isProduction }
+      });
 
-  // plugins
+    !!preprocessor &&
+      loaders.push({
+        loader: `${preprocessor}-loader`,
+        options: { sourceMap: !isProduction }
+      });
+
+    return loaders;
+  };
+  /**
+   * Plugins
+   * @returns {[]}
+   */
   const getPlugins = () => {
-    const showTreemap = !!env.treemap;
-
     const plugins = [
       new CleanWebpackPlugin(),
 
@@ -58,7 +87,7 @@ module.exports = (env = {}, { mode } = {}) => {
       }),
 
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name]--[hash:5].bundle.css',
+        filename: `${pathToOutputFile.css}${name}.css`,
         ignoreOrder: false
       })
     ];
@@ -67,13 +96,26 @@ module.exports = (env = {}, { mode } = {}) => {
 
     return plugins;
   };
+  /**
+   * File loader
+   * @param {string} pathToFile
+   * @returns {{loader: string, options: {name: string}}[]}
+   */
+  const getFileLoader = (pathToFile) => [
+    {
+      loader: 'file-loader',
+      options: {
+        name: `${pathToFile}${isProduction ? '' : '[folder]--'}${name}.[ext]`
+      }
+    }
+  ];
 
   return {
-    entry: './src/index.jsx',
+    entry: { main: './src/index.jsx' },
 
     output: {
       path: path.resolve(__dirname, './dist/'),
-      filename: 'static/js/[name].bundle.js',
+      filename: `${pathToOutputFile.js}${name}.js`,
       publicPath: isProduction ? './' : '/'
     },
 
@@ -82,45 +124,39 @@ module.exports = (env = {}, { mode } = {}) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          resolve: { extensions: ['.js', '.jsx'] },
-          use: {
-            loader: 'babel-loader'
-          }
+          use: 'babel-loader'
         },
 
         {
-          test: /\.(sa|sc|c)ss$/,
+          test: /\.(css)$/,
           exclude: /\.module\.(sa|sc|c)ss$/,
-          use: getUseForStyle()
+          use: getStyleLoaders()
         },
 
         {
-          test: /\.module\.(sa|sc|c)ss$/,
-          use: getUseForStyle({ isModule: true })
+          test: /\.(sass|scss)$/,
+          exclude: /\.module\.(sass|scss)$/,
+          use: getStyleLoaders({ preprocessor: 'sass' })
+        },
+
+        {
+          test: /\.module\.(css)$/,
+          use: getStyleLoaders({ isModule: true })
+        },
+
+        {
+          test: /\.module\.(sass|scss|)$/,
+          use: getStyleLoaders({ isModule: true, preprocessor: 'sass' })
         },
 
         {
           test: /\.(png|jpe?g|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'static/images/[name]--[hash:5].[ext]'
-              }
-            }
-          ]
+          use: getFileLoader('static/images/')
         },
 
         {
-          test: /\.(woff2?)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'static/fonts/[name].[ext]'
-              }
-            }
-          ]
+          test: /\.(ttf|woff2?)$/,
+          use: getFileLoader(`${pathToOutputFile.fonts}`)
         }
       ]
     },
@@ -128,15 +164,27 @@ module.exports = (env = {}, { mode } = {}) => {
     plugins: getPlugins(),
 
     optimization: {
-      minimize: isProduction ? true : false,
+      minimize: isProduction,
       minimizer: [new TerserPlugin()],
 
       splitChunks: {
-        chunks: 'all'
+        chunks: 'all',
+        cacheGroups: {
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            reuseExistingChunk: false
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            priority: -10
+          }
+        }
       },
 
       runtimeChunk: {
-        name: (entrypoint) => `runtime~${entrypoint.name}`
+        name: isProduction ? `${name}` : 'runtime'
       }
     },
 
@@ -149,36 +197,18 @@ module.exports = (env = {}, { mode } = {}) => {
     },
 
     resolve: {
+      extensions: ['.js', '.jsx'],
+
       alias: {
-        '~src': path.resolve(__dirname, 'src'),
-        '~public': path.resolve(__dirname, 'public'),
-        '~components': path.resolve(__dirname, 'src/components'),
-        '~hocs': path.resolve(__dirname, 'src/hocs'),
-        '~routes': path.resolve(__dirname, 'src/routes'),
-        '~services': path.resolve(__dirname, 'src/services'),
-        '~store': path.resolve(__dirname, 'src/store'),
-        '~utils': path.resolve(__dirname, 'src/utils')
+        '~src': getAlias('src'),
+        '~public': getAlias('public'),
+        '~components': getAlias('src/components'),
+        '~hocs': getAlias('src/hocs'),
+        '~routes': getAlias('src/routes'),
+        '~services': getAlias('src/services'),
+        '~store': getAlias('src/store'),
+        '~utils': getAlias('src/utils')
       }
     }
   };
 };
-
-// analog resolve-alias:
-// install "babel-plugin-module-resolver"
-// .babelrc -> plugins
-/*[
-  "module-resolver",
-  {
-    "root": ["."],
-    "alias": {
-      "~src": "./src",
-      "~public": "./public",
-      "~components": "./src/components",
-      "~hocs": "./src/hocs",
-      "~routes": "./src/routes",
-      "~services": "./src/services",
-      "~store": "./src/store",
-      "~utils": "./src/utils"
-    }
-  }
-] */
