@@ -1,7 +1,7 @@
 {
   "name": "yr-cinema",
-  "version": "1.0.0",
-  "main": "index.jsx",
+  "version": "0.1.0",
+  "private": true,
   "author": "Constantine Zubarev <kv.zubarev@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -9,7 +9,6 @@
     "classnames": "^2.2.6",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^2.2.0",
-    "materialize-css": "^1.0.0-rc.2",
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.9.0",
