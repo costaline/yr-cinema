@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env = {}, { mode } = {}) => {
   /** Path to output file(s) */
@@ -83,8 +84,21 @@ module.exports = (env = {}, { mode } = {}) => {
 
       new HtmlWebpackPlugin({
         inject: true,
-        template: 'public/index.html'
+        template: 'public/index.html',
+        minify: isProduction
+          ? {
+              removeComments: true,
+              collapseWhitespace: true,
+              removeRedundantAttributes: true,
+              useShortDoctype: true,
+              removeEmptyAttributes: true,
+              removeStyleLinkTypeAttributes: true,
+              keepClosingSlash: true
+            }
+          : false
       }),
+
+      new FaviconsWebpackPlugin('./public/logo.png'),
 
       new MiniCssExtractPlugin({
         filename: `${pathToOutputFile.css}${name}.css`,
