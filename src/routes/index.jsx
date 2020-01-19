@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import HomePage from '~routes/home-page';
@@ -8,7 +8,8 @@ const Routes = () => {
   return (
     <StyledMain>
       <Switch>
-        <Route path="/" component={HomePage} />
+        <Route path="/" exact component={HomePage} />
+        <Redirect to="/" />
       </Switch>
     </StyledMain>
   );
