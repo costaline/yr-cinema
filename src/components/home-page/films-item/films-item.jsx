@@ -33,13 +33,16 @@ FilmsItem.propTypes = {
 export default FilmsItem;
 
 const StyledFilmItem = styled.div`
+  --poster-height: 200px;
+  --poster-ratio: 0.7;
+
   padding: 15px;
 
   & > div {
     position: relative;
-
-    width: 150px;
-    height: 200px;
+    //TODO: variables.js ?
+    width: calc(var(--poster-height) * var(--poster-ratio));
+    height: var(--poster-height);
 
     overflow: hidden;
 
@@ -71,8 +74,8 @@ const StyledFilmItem = styled.div`
 
   & img {
     display: block;
-    width: 150px;
-    height: 200px;
+    width: calc(var(--poster-height) * var(--poster-ratio));
+    height: var(--poster-height);
 
     transition: all 750ms ease-in-out;
 

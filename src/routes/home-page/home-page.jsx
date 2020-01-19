@@ -77,7 +77,7 @@ export default compose(
 )(HomePage);
 
 const StyledContent = styled.div`
-  min-height: 475px;
+  min-height: 460px;
   display: flex;
   justify-content: center;
   align-items: center;
