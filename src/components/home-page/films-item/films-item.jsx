@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import T from 'prop-types';
 import styled from 'styled-components';
 
+import { Loader } from '~components/shared/loader';
 import defaultPoster from './default-poster.png';
 
-const FilmsItem = ({ name, posterURL }) => (
-  <StyledFilmItem>
-    <div>
-      <h3>{name}</h3>
-      <img src={posterURL || defaultPoster} alt={name} />
-    </div>
-  </StyledFilmItem>
-);
+const FilmsItem = ({ name, posterURL }) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  // TODO: split state & render?
+  return (
+    <StyledFilmItem>
+      <div>
+        <h3>{name}</h3>
+        {loading && <Loader />}
+        <img
+          src={!error ? posterURL || defaultPoster : defaultPoster}
+          alt={name}
+          onLoad={() => setLoading(false)}
+          onError={() => setError(true)}
+        />
+      </div>
+    </StyledFilmItem>
+  );
+};
 
 FilmsItem.propTypes = {
   name: T.string,
@@ -23,7 +35,7 @@ export default FilmsItem;
 const StyledFilmItem = styled.div`
   padding: 15px;
 
-  & div {
+  & > div {
     position: relative;
 
     width: 150px;
