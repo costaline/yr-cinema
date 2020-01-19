@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Film item all data render correctly 1`] = `
+<styled.div>
+  <div>
+    <h3>
+      Some name
+    </h3>
+    <Loader />
+    <img
+      alt="Some name"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="https://site.com/image.jpg"
+    />
+  </div>
+</styled.div>
+`;
