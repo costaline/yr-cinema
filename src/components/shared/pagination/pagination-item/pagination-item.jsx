@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import T from 'prop-types';
 import styled from 'styled-components';
 
+import theme from '~src/app/theme.scss';
+
 const PaginationItem = ({ page, currentPage, querySettings }) => {
   return (
     <StyledLi page={page} currentPage={currentPage}>
@@ -20,28 +22,38 @@ PaginationItem.propTypes = {
 export default PaginationItem;
 
 const StyledLi = styled.li`
-  width: 25px;
-  height: 25px;
-  border: 1px solid grey;
-  border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  width: 25px;
+  height: 25px;
   margin: 2px;
-  background-color: ${({ page, currentPage }) =>
-    page === currentPage ? 'lightblue' : 'lightgoldenrodyellow'};
 
-  &:hover {
-    background-color: #2d79ff;
-    color: white;
-  }
+  border: 2px solid ${theme.mainColor};
+
+  overflow: hidden;
 
   & a {
     display: block;
     padding: 10px;
+
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
-    color: inherit;
+    color: ${({ page, currentPage }) =>
+      page === currentPage ? 'white' : theme.mainColor};
+
+    background-color: ${({ page, currentPage }) =>
+      page === currentPage ? theme.mainColor : 'lightgoldenrodyellow'};
+
+    opacity: 1;
+
+    &:hover {
+      color: white;
+
+      background-color: ${theme.mainColor};
+
+      opacity: 0.7;
+    }
   }
 `;

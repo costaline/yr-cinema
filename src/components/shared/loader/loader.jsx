@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import theme from '~src/app/theme.scss';
+
 export const Loader = () => (
   <StyledLoader>
     <div className="lds-grid">
@@ -44,7 +46,7 @@ const StyledLoader = styled.div`
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #2d79ff;
+      background: ${theme.mainColor};
       animation: ${ldsGrid} 1.2s linear infinite;
 
       &:nth-child(1) {

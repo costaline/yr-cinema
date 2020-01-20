@@ -1,5 +1,7 @@
+@import '~src/app/theme.scss';
+
 .navbar {
-  background-color: #2d79ff;
+  background-color: $main-color;
   height: 56px;
   display: flex;
   padding: 10px;

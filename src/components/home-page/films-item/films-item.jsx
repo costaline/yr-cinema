@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Loader } from '~components/shared/loader';
 import defaultPoster from './default-poster.png';
+import theme from '~src/app/theme.scss';
 
 const FilmsItem = ({ name, posterURL }) => {
   const [loading, setLoading] = useState(true);
@@ -51,7 +52,7 @@ const StyledFilmItem = styled.div`
     transition: all 750ms ease-in-out;
 
     &:hover {
-      box-shadow: 0 0 0 5px #888888;
+      box-shadow: 0 0 0 5px ${theme.mainColor};
     }
   }
 
@@ -64,7 +65,7 @@ const StyledFilmItem = styled.div`
     padding: 5px;
 
     font-family: Lato, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
 
     background-color: rgba(255, 255, 255, 0.75);
