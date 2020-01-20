@@ -2,13 +2,15 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-import HomePage from '~routes/home-page';
+import HomePage from './home-page';
+import AuthPage from './auth-page';
 
 const Routes = () => {
   return (
     <StyledMain>
       <Switch>
         <Route path="/" exact component={HomePage} />
+        <Route path="/auth" component={AuthPage} />
         <Redirect to="/" />
       </Switch>
     </StyledMain>

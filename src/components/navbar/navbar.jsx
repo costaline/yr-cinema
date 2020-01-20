@@ -20,6 +20,11 @@ const NavBar = () => {
             Films
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/auth" activeClassName={styles.active}>
+            Auth
+          </NavLink>
+        </li>
       </ul>
     </div>
   );
