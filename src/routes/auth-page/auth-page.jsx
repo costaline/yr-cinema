@@ -1,9 +1,9 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { compose } from 'redux';
 import { useTranslation } from 'react-i18next';
 
 import { withErrorBoundary } from '~hocs/with-error-boundary';
-import { Loader } from '~components/shared/loader';
+import { withSuspense } from '~hocs/with-suspense';
 
 const AuthPage = () => {
   const { t, i18n } = useTranslation();
@@ -26,11 +26,4 @@ const AuthPage = () => {
   );
 };
 
-const Page = () => {
-  return (
-    <Suspense fallback={<Loader />}>
-      <AuthPage />
-    </Suspense>
-  );
-};
-export default compose(withErrorBoundary)(Page);
+export default compose(withErrorBoundary, withSuspense)(AuthPage);
