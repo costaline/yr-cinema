@@ -1,29 +1,20 @@
 import React from 'react';
 import { compose } from 'redux';
-import { useTranslation } from 'react-i18next';
 
 import { withErrorBoundary } from '~hocs/with-error-boundary';
-import { withSuspense } from '~hocs/with-suspense';
+import Form from '~components/auth-page/form';
 
 const AuthPage = () => {
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+  const onSubmitHandler = (data) => {
+    console.log('form send: ', data);
   };
 
   return (
     <div>
-      <h1>{t('title')}</h1>
-      <hr />
-      <div>
-        <button onClick={() => changeLanguage('ru')}>ru</button>
-        <button onClick={() => changeLanguage('en')}>en</button>
-      </div>
-      <hr />
-      <div>{t('text')}</div>
+      <h1>Auth</h1>
+      <Form onSubmit={onSubmitHandler} />
     </div>
   );
 };
 
-export default compose(withErrorBoundary, withSuspense)(AuthPage);
+export default compose(withErrorBoundary)(AuthPage);
