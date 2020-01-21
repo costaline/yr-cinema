@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env = {}, { mode } = {}) => {
   /** Path to output file(s) */
@@ -103,7 +104,9 @@ module.exports = (env = {}, { mode } = {}) => {
       new MiniCssExtractPlugin({
         filename: `${pathToOutputFile.css}${name}.css`,
         ignoreOrder: false
-      })
+      }),
+
+      new CopyPlugin([{ from: 'public/locales', to: 'locales/' }])
     ];
 
     showTreemap && plugins.push(new BundleAnalyzerPlugin());
@@ -205,6 +208,7 @@ module.exports = (env = {}, { mode } = {}) => {
     devtool: isProduction ? false : 'source-map',
 
     devServer: {
+      hot: true,
       historyApiFallback: true,
       overlay: true,
       port: 8082

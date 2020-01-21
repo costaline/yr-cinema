@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import store from '~store';
 import App from './app';
-import { BrowserRouter } from 'react-router-dom';
+import './i18n';
 
 const app = (
   <Provider store={store}>
