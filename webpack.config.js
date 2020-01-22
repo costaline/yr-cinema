@@ -8,6 +8,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env = {}, { mode } = {}) => {
   /** Path to output file(s) */
@@ -81,6 +82,8 @@ module.exports = (env = {}, { mode } = {}) => {
    */
   const getPlugins = () => {
     const plugins = [
+      new Dotenv(),
+
       new CleanWebpackPlugin(),
 
       new HtmlWebpackPlugin({
