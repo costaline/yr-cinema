@@ -1,28 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { compose } from 'redux';
+import { Route, Redirect, useRouteMatch, Switch } from 'react-router-dom';
 
 import { withErrorBoundary } from '~hocs/with-error-boundary';
-import Form from '~components/auth-page/form';
-import { FirebaseContext } from '~services/api/firebase/auth';
+import * as PATH from '~routes/path';
+
+import SignInPage from './signin-page';
+import SignUpPage from './signup-page';
 
 const AuthPage = () => {
-  const firebase = useContext(FirebaseContext);
-
-  const onSubmitHandler = (data) => {
-    console.log('form send: ', data);
-
-    firebase
-      .doCreateUserWithEmailAndPassword(data.email, data.password)
-      .then((authUser) => {
-        console.log('authUser: ', authUser);
-      })
-      .catch((err) => console.log('authErr: ', err));
-  };
+  const { path } = useRouteMatch();
 
   return (
     <div>
       <h1>Auth</h1>
-      <Form onSubmit={onSubmitHandler} />
+      <Switch>
+        <Route path={`${path + PATH.SIGNIN}`}>
+          <SignInPage />
+        </Route>
+        <Route path={`${path + PATH.SIGNUP}`}>
+          <SignUpPage />
+        </Route>
+        <Redirect to={`${path + PATH.SIGNIN}`} />
+      </Switch>
     </div>
   );
 };

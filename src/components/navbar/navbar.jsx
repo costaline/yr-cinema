@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink, useRouteMatch } from 'react-router-dom';
 
+import * as PATH from '~routes/path';
 import styles from './navbar.module.scss';
 
 const NavBar = () => {
@@ -16,13 +17,16 @@ const NavBar = () => {
       {match.isExact && <a className={styles.brand}>yrCinema</a>}
       <ul>
         <li>
-          <NavLink to="/" exact activeClassName={styles.active}>
+          <NavLink to={`${PATH.HOME}`} exact activeClassName={styles.active}>
             Films
           </NavLink>
         </li>
         <li>
-          <NavLink to="/auth" activeClassName={styles.active}>
-            Auth
+          <NavLink
+            to={`${PATH.AUTH + PATH.SIGNIN}`}
+            activeClassName={styles.active}
+          >
+            Login
           </NavLink>
         </li>
       </ul>

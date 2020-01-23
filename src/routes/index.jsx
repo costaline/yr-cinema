@@ -10,7 +10,9 @@ const Routes = () => {
     <StyledMain>
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/auth" component={AuthPage} />
+        <Route path="/auth">
+          <AuthPage />
+        </Route>
         <Redirect to="/" />
       </Switch>
     </StyledMain>
