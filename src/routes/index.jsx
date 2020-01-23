@@ -9,7 +9,7 @@ const Routes = () => {
   return (
     <StyledMain>
       <Switch>
-        <Route path="/" exact component={HomePage} />
+        <Route path="/" exact render={() => <HomePage />} />
         <Route path="/auth">
           <AuthPage />
         </Route>

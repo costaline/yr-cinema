@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import T from 'prop-types';
@@ -19,7 +20,8 @@ import Pagination from '~components/shared/pagination';
 import { getPagination } from '~utils/pagination';
 
 const HomePage = (props) => {
-  const { fetchFilms, films = [], total, loading, error, location } = props;
+  const { fetchFilms, films = [], total, loading, error } = props;
+  const location = useLocation();
 
   const currentQuery = useMemo(() => getPagination(location.search), [
     location.search
