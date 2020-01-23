@@ -1,23 +1,25 @@
 import React from 'react';
-import { Link, NavLink, useRouteMatch } from 'react-router-dom';
+import { Link, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
 
 import * as PATH from '~routes/path';
 import styles from './navbar.module.scss';
 
 const NavBar = () => {
   const match = useRouteMatch('/');
+  const { search } = useLocation();
 
   return (
     <div className={styles.navbar}>
-      {!match.isExact && (
-        <Link className={styles.brand} to="">
+      {!match.isExact || !!search ? (
+        <Link className={styles.brand} to="/">
           yrCinema
         </Link>
+      ) : (
+        <p className={styles.brand}>yrCinema</p>
       )}
-      {match.isExact && <a className={styles.brand}>yrCinema</a>}
       <ul>
         <li>
-          <NavLink to={`${PATH.HOME}`} exact activeClassName={styles.active}>
+          <NavLink to={`${PATH.FILMS}`} exact activeClassName={styles.active}>
             Films
           </NavLink>
         </li>

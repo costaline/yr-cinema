@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import T from 'prop-types';
 import styled from 'styled-components';
 
 import theme from '~src/app/theme.scss';
 
 const PaginationItem = ({ page, currentPage, querySettings }) => {
+  const { path } = useRouteMatch();
+
   return (
     <StyledLi page={page} currentPage={currentPage}>
-      <Link to={`/?${querySettings}&page=${page}`}>{page}</Link>
+      <Link to={`${path}?${querySettings}&page=${page}`}>{page}</Link>
     </StyledLi>
   );
 };

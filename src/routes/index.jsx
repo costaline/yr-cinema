@@ -10,6 +10,7 @@ const Routes = () => {
     <StyledMain>
       <Switch>
         <Route path="/" exact render={() => <HomePage />} />
+        <Route path="/films" render={() => <HomePage />} />
         <Route path="/auth">
           <AuthPage />
         </Route>
