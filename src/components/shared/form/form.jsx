@@ -1,12 +1,12 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import { FormInput } from '~components/shared/form-controls/form-input';
+import { Input } from './controls/input';
 
 const Form = ({ handleSubmit, fields, error, submitting }) => {
   const renderFields = () => {
     return fields.map((field) => {
-      const { component = FormInput, ...otherProps } = field;
+      const { component = Input, ...otherProps } = field;
       const fieldProps = {
         component,
         ...otherProps

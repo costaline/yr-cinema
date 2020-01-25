@@ -1,15 +1,14 @@
 import React from 'react';
 
-export const FormInput = ({ input, meta, ...otherProps }) => {
+export const Input = ({ input, meta, ...otherProps }) => {
   const hasError = meta.touched && meta.error;
-
-  console.log('meta: ', meta);
 
   return (
     <div>
       <label>
-        <input {...input} {...otherProps} />
         <small>{input.name}</small>
+        <br />
+        <input {...input} {...otherProps} />
       </label>
       {hasError && (
         <p>

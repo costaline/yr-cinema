@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FormName } from 'redux-form';
 
 import { FirebaseContext } from '~services/api/firebase/auth';
-import Form from '~components/auth-page/form';
+import Form from '~components/shared/form';
 import * as PATH from '~routes/path';
 
 const SignInPage = ({ fields }) => {

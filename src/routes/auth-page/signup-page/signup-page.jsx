@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FormName } from 'redux-form';
 
 import { FirebaseContext } from '~services/api/firebase/auth';
-import Form from '~components/auth-page/form';
+import Form from '~components/shared/form';
 
 const SignUpPage = ({ fields }) => {
   const firebase = useContext(FirebaseContext);
