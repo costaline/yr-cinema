@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { FormName } from 'redux-form';
 
 import { FirebaseContext } from '~services/api/firebase/auth';
 import Form from '~components/auth-page/form';
 import * as PATH from '~routes/path';
 
-const SignInPage = () => {
+const SignInPage = ({ fields }) => {
   const firebase = useContext(FirebaseContext);
 
   const onSubmitHandler = (data) => {
@@ -19,10 +20,16 @@ const SignInPage = () => {
       .catch((err) => console.log('authErr: ', err));
   };
 
+  const formProps = {
+    onSubmit: onSubmitHandler,
+    fields,
+    form: 'signin'
+  };
+
   return (
     <div>
       <h1>Signin</h1>
-      <Form onSubmit={onSubmitHandler} />
+      <FormName>{() => <Form {...formProps} />}</FormName>
       <p>
         New user? <Link to={`${PATH.AUTH + PATH.SIGNUP}`}>Registration</Link>{' '}
         awaits you.

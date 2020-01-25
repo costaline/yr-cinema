@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+import { FormName } from 'redux-form';
 
 import { FirebaseContext } from '~services/api/firebase/auth';
 import Form from '~components/auth-page/form';
 
-const SignUpPage = () => {
+const SignUpPage = ({ fields }) => {
   const firebase = useContext(FirebaseContext);
 
   const onSubmitHandler = (data) => {
@@ -17,10 +18,16 @@ const SignUpPage = () => {
       .catch((err) => console.log('authErr: ', err));
   };
 
+  const formProps = {
+    onSubmit: onSubmitHandler,
+    fields,
+    form: 'signup'
+  };
+
   return (
     <div>
       <h1>Signup</h1>
-      <Form onSubmit={onSubmitHandler} />
+      <FormName>{() => <Form {...formProps} />}</FormName>
     </div>
   );
 };
