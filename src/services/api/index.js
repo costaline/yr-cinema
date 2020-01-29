@@ -1,3 +1,3 @@
-import * as db from './firebase/db';
+import * as db from './rest/db';
 
 export { db };

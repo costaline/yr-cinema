@@ -10,7 +10,7 @@ const config = {
   messagingSenderId: process.env.APP_MESSAGING_SENDER_ID
 };
 
-class Firebase {
+export default class Firebase {
   constructor() {
     app.initializeApp(config);
 
@@ -29,4 +29,3 @@ class Firebase {
   doPasswordUpdate = (password) =>
     this.auth.currentUser.updatePassword(password);
 }
-export default Firebase;

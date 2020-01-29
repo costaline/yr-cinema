@@ -9,7 +9,7 @@ import {
   fetchFilmsMock
 } from '../actions';
 import * as A from '../action-types';
-import { dbGet } from '~services/api/firebase/connect';
+import { dbGet } from '~services/api/rest/connect';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

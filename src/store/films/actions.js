@@ -1,6 +1,6 @@
 import * as A from './action-types';
 import * as api from '~services/api';
-import { dbGet } from '~services/api/firebase/connect';
+import { dbGet } from '~services/api/rest/connect';
 
 export const fetchFilmsStart = () => {
   return {

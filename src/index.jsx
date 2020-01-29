@@ -5,16 +5,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import store from '~store';
 import App from './app';
-import Firebase, { FirebaseContext } from '~services/api/firebase/auth';
 import './i18n';
 
 const app = (
   <Provider store={store}>
-    <FirebaseContext.Provider value={new Firebase()}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </FirebaseContext.Provider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 
