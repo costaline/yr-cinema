@@ -1,27 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FormName } from 'redux-form';
+import { connect } from 'react-redux';
 
-import { FirebaseContext } from '~services/api/firebase/auth';
 import Form from '~components/shared/form';
+import { userSignUp } from '~store/auth/actions';
+import { getError } from '~store/auth/selectors';
 
-const SignUpPage = ({ fields }) => {
-  const firebase = useContext(FirebaseContext);
-
-  const onSubmitHandler = (data) => {
-    console.log('form send: ', data);
-
-    firebase
-      .doCreateUserWithEmailAndPassword(data.email, data.password)
-      .then((authUser) => {
-        console.log('authUser: ', authUser);
-      })
-      .catch((err) => console.log('authErr: ', err));
-  };
+const SignUpPage = ({ fields, registration, error }) => {
+  const onSubmitHandler = (data) => registration(data);
 
   const formProps = {
     onSubmit: onSubmitHandler,
     fields,
-    form: 'signup'
+    form: 'signup',
+    errorMessage: error
   };
 
   return (
@@ -32,4 +24,10 @@ const SignUpPage = ({ fields }) => {
   );
 };
 
-export default SignUpPage;
+const mapStateToProps = (state) => ({
+  error: getError(state)
+});
+
+export default connect(mapStateToProps, { registration: userSignUp })(
+  SignUpPage
+);
