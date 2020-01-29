@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 
 import { Input } from './controls/input';
 
-const Form = ({ handleSubmit, fields, error, submitting }) => {
+const Form = ({ handleSubmit, fields, errorMessage, submitting }) => {
   const renderFields = () => {
     return fields.map((field) => {
       const { component = Input, ...otherProps } = field;
@@ -19,7 +19,7 @@ const Form = ({ handleSubmit, fields, error, submitting }) => {
   return (
     <form onSubmit={handleSubmit}>
       {renderFields()}
-      {error && <div>data is wrong: {error}</div>}
+      {errorMessage && <div>data is wrong: {errorMessage}</div>}
       <div>
         <button disabled={submitting}>send</button>
       </div>
