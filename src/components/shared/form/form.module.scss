@@ -1,5 +1,41 @@
+@import '~src/app/theme.scss';
+
 .form {
-  outline: 1px solid green;
-  max-width: 300px;
   margin: 0 auto;
+  padding: 15px;
+  max-width: 300px;
+
+  box-shadow: 0 0 5px $main-color;
+  border-radius: 10px;
+
+  & h3 {
+    text-align: center;
+  }
+}
+
+.buttonGroup {
+  text-align: center;
+
+  & button {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+
+    color: white;
+
+    background-color: cadetblue;
+    border: none;
+
+    &:hover {
+      background-color: darkcyan;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.errorMessage {
+  margin: 10px 0;
+
+  text-align: center;
+  color: red;
 }

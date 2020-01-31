@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FormName } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
 
 import Form from '~components/shared/form';
 import * as PATH from '~routes/path';
@@ -24,10 +25,10 @@ const SignInPage = ({ fields, login, error }) => {
     <FormName>
       {() => (
         <Form {...formProps}>
-          <small>
+          <SMessage>
             New user? <Link to={PATH.AUTH + PATH.SIGNUP}>Registration</Link>{' '}
             awaits you.
-          </small>
+          </SMessage>
         </Form>
       )}
     </FormName>
@@ -43,3 +44,19 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
+
+const SMessage = styled.small`
+  display: block;
+
+  text-align: center;
+
+  & a {
+    text-decoration: none;
+    font-weight: bold;
+    color: cornflowerblue;
+
+    &:hover {
+      font-style: italic;
+    }
+  }
+`;

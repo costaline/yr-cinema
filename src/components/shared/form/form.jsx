@@ -32,8 +32,12 @@ const Form = (props) => {
       <h3>{title}</h3>
       <form onSubmit={handleSubmit}>
         {renderFields()}
-        {errorMessage && <div>data is wrong: {errorMessage}</div>}
-        <div>
+        {errorMessage && (
+          <div className={styles.errorMessage}>
+            data is wrong: {errorMessage}
+          </div>
+        )}
+        <div className={styles.buttonGroup}>
           <button disabled={submitting}>send</button>
         </div>
       </form>
