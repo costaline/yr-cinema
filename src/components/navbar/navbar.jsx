@@ -1,17 +1,21 @@
 import React from 'react';
 import { Link, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import * as PATH from '~routes/path';
+import { getIsUser } from '~store/app/selectors';
+import { userLogout } from '~store/auth/actions';
+
 import styles from './navbar.module.scss';
 
-const NavBar = () => {
+const NavBar = ({ isUser, userLogout }) => {
   const match = useRouteMatch('/');
   const { search } = useLocation();
 
   return (
     <div className={styles.navbar}>
       {!match.isExact || !!search ? (
-        <Link className={styles.brand} to="/">
+        <Link className={styles.brand} to={PATH.HOME}>
           yrCinema
         </Link>
       ) : (
@@ -24,16 +28,24 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to={`${PATH.AUTH + PATH.SIGNIN}`}
-            activeClassName={styles.active}
-          >
-            Login
-          </NavLink>
+          {!isUser ? (
+            <NavLink
+              to={`${PATH.AUTH + PATH.SIGNIN}`}
+              activeClassName={styles.active}
+            >
+              Login
+            </NavLink>
+          ) : (
+            <a onClick={() => userLogout()}>Logout</a>
+          )}
         </li>
       </ul>
     </div>
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  isUser: getIsUser(state)
+});
+
+export default connect(mapStateToProps, { userLogout })(NavBar);
