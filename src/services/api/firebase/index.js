@@ -1,1 +1,3 @@
-export default from './config';
+import * as firebase from './config';
+
+export default firebase;

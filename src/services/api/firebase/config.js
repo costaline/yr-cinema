@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
 const config = {
@@ -10,22 +10,56 @@ const config = {
   messagingSenderId: process.env.APP_MESSAGING_SENDER_ID
 };
 
-export default class Firebase {
-  constructor() {
-    app.initializeApp(config);
+firebase.initializeApp(config);
 
-    this.auth = app.auth();
+const getUserProfile = (user) => ({
+  name: user.displayName,
+  email: user.email,
+  photoUrl: user.photoURL,
+  emailVerified: user.emailVerified,
+  uid: user.uid
+});
+
+export const doCreateUserWithEmailAndPassword = async (email, password) => {
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password);
+  } catch (error) {
+    throw new Error(error);
   }
+};
 
-  doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
+export const doSignInWithEmailAndPassword = async (email, password) => {
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, password);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+export const doOnAuthStateChanged = (onUser, onNoUser) => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const profile = getUserProfile(user);
+      onUser(profile);
+    } else {
+      onNoUser();
+    }
+  });
+};
 
-  doSignOut = () => this.auth.signOut();
+export const getCurrentUser = () => {
+  const user = firebase.auth().currentUser;
 
-  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
-  doPasswordUpdate = (password) =>
-    this.auth.currentUser.updatePassword(password);
-}
+  if (user) {
+    return getUserProfile(user);
+  }
+  return null;
+};
+
+export const logoutUser = async () => {
+  try {
+    await firebase.auth().signOut();
+  } catch (error) {
+    throw new Error(error);
+  }
+};
