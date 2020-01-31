@@ -1,3 +1,1 @@
-export const getError = (state) => {
-  return state.auth.error;
-};
+export const getError = (state) => state.auth.error;

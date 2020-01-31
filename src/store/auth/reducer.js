@@ -26,6 +26,22 @@ const handlers = {
     error: error.message
   }),
 
+  [A.LOGOUT_START]: (state) => ({
+    ...state,
+    isRequest: true
+  }),
+
+  [A.LOGOUT_SUCCESS]: (state) => ({
+    ...state,
+    ...initialState
+  }),
+
+  [A.AUTH_FAILURE]: (state, error) => ({
+    ...state,
+    isRequest: false,
+    error
+  }),
+
   DEFAULT: (state) => state
 };
 

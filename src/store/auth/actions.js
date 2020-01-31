@@ -1,9 +1,7 @@
 import { reset } from 'redux-form';
 
 import * as A from './action-types';
-import Firebase from '~services/api/firebase';
-
-const firebase = new Firebase();
+import firebase from '~services/api/firebase';
 
 export const authStart = () => {
   return {
@@ -25,16 +23,34 @@ export const authFailure = (error) => {
   };
 };
 
+export const logoutStart = () => {
+  return {
+    type: A.LOGOUT_START
+  };
+};
+
+export const logoutSuccess = () => {
+  return {
+    type: A.LOGOUT_SUCCESS
+  };
+};
+
+export const logoutFailure = (error) => {
+  return {
+    type: A.LOGOUT_FAILURE,
+    error
+  };
+};
+
 export const userSignUp = ({ email, password }) => async (dispatch) => {
   dispatch(authStart());
 
   try {
-    const user = await firebase.doCreateUserWithEmailAndPassword(
-      email,
-      password
-    );
+    await firebase.doCreateUserWithEmailAndPassword(email, password);
 
-    dispatch(authSuccess(user));
+    const data = firebase.getCurrentUser();
+
+    dispatch(authSuccess(data));
     dispatch(reset('signup'));
   } catch (error) {
     dispatch(authFailure(error));
@@ -45,11 +61,24 @@ export const userSignIn = ({ email, password }) => async (dispatch) => {
   dispatch(authStart());
 
   try {
-    const user = await firebase.doSignInWithEmailAndPassword(email, password);
+    await firebase.doSignInWithEmailAndPassword(email, password);
 
-    dispatch(authSuccess(user));
+    const data = firebase.getCurrentUser();
+
+    dispatch(authSuccess(data));
     dispatch(reset('signin'));
   } catch (error) {
     dispatch(authFailure(error));
+  }
+};
+
+export const userLogout = () => async (dispatch) => {
+  dispatch(logoutStart());
+  try {
+    await firebase.logoutUser();
+
+    dispatch(logoutSuccess());
+  } catch (error) {
+    dispatch(logoutFailure());
   }
 };
