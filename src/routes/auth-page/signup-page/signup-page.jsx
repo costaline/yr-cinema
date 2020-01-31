@@ -13,15 +13,11 @@ const SignUpPage = ({ fields, registration, error }) => {
     onSubmit: onSubmitHandler,
     fields,
     form: 'signup',
-    errorMessage: error
+    errorMessage: error,
+    title: 'Signup'
   };
 
-  return (
-    <div>
-      <h1>Signup</h1>
-      <FormName>{() => <Form {...formProps} />}</FormName>
-    </div>
-  );
+  return <FormName>{() => <Form {...formProps} />}</FormName>;
 };
 
 const mapStateToProps = (state) => ({

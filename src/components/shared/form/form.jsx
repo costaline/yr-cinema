@@ -3,7 +3,18 @@ import { Field, reduxForm } from 'redux-form';
 
 import { Input } from './controls/input';
 
-const Form = ({ handleSubmit, fields, errorMessage, submitting }) => {
+import styles from './form.module.scss';
+
+const Form = (props) => {
+  const {
+    handleSubmit,
+    fields,
+    errorMessage,
+    submitting,
+    title,
+    children
+  } = props;
+
   const renderFields = () => {
     return fields.map((field) => {
       const { component = Input, ...otherProps } = field;
@@ -17,13 +28,17 @@ const Form = ({ handleSubmit, fields, errorMessage, submitting }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {renderFields()}
-      {errorMessage && <div>data is wrong: {errorMessage}</div>}
-      <div>
-        <button disabled={submitting}>send</button>
-      </div>
-    </form>
+    <div className={styles.form}>
+      <h3>{title}</h3>
+      <form onSubmit={handleSubmit}>
+        {renderFields()}
+        {errorMessage && <div>data is wrong: {errorMessage}</div>}
+        <div>
+          <button disabled={submitting}>send</button>
+        </div>
+      </form>
+      {children}
+    </div>
   );
 };
 

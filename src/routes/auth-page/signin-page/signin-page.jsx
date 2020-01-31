@@ -16,18 +16,21 @@ const SignInPage = ({ fields, login, error }) => {
     onSubmit: onSubmitHandler,
     fields,
     form: 'signin',
-    errorMessage: error
+    errorMessage: error,
+    title: 'Signin'
   };
 
   return (
-    <div>
-      <h1>Signin</h1>
-      <FormName>{() => <Form {...formProps} />}</FormName>
-      <p>
-        New user? <Link to={`${PATH.AUTH + PATH.SIGNUP}`}>Registration</Link>{' '}
-        awaits you.
-      </p>
-    </div>
+    <FormName>
+      {() => (
+        <Form {...formProps}>
+          <small>
+            New user? <Link to={PATH.AUTH + PATH.SIGNUP}>Registration</Link>{' '}
+            awaits you.
+          </small>
+        </Form>
+      )}
+    </FormName>
   );
 };
 

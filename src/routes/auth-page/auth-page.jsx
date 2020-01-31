@@ -27,18 +27,15 @@ const AuthPage = () => {
   ];
 
   return (
-    <div>
-      <h1>Auth</h1>
-      <Switch>
-        <Route path={`${path + PATH.SIGNIN}`}>
-          <SignInPage fields={fields} />
-        </Route>
-        <Route path={`${path + PATH.SIGNUP}`}>
-          <SignUpPage fields={fields} />
-        </Route>
-        <Redirect to={`${path + PATH.SIGNIN}`} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route path={`${path + PATH.SIGNIN}`}>
+        <SignInPage fields={fields} />
+      </Route>
+      <Route path={`${path + PATH.SIGNUP}`}>
+        <SignUpPage fields={fields} />
+      </Route>
+      <Redirect to={`${path + PATH.SIGNIN}`} />
+    </Switch>
   );
 };
 
