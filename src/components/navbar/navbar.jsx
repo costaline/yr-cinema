@@ -33,7 +33,7 @@ const NavBar = ({ isUser, userLogout }) => {
           )}
         </li>
       </ul>
-      <UserProfile />
+      {isUser && <UserProfile />}
     </div>
   );
 };
