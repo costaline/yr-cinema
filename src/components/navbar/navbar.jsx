@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as PATH from '~routes/path';
 import { getIsUser } from '~store/app/selectors';
 import { userLogout } from '~store/auth/actions';
+import UserProfile from './user-profile';
 
 import styles from './navbar.module.scss';
 
@@ -40,6 +41,7 @@ const NavBar = ({ isUser, userLogout }) => {
           )}
         </li>
       </ul>
+      <UserProfile />
     </div>
   );
 };
