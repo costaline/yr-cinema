@@ -1,4 +1,18 @@
 {
-  "title": "Auth page",
-  "text": "Switch language between english and russian using buttons above."
+  "auth": {
+    "signup": {
+      "title": "Registration",
+      "sendButtonText": "Register"
+    },
+    "signin": {
+      "title": "Authentication",
+      "sendButtonText": "Login",
+      "message": "New user? <0>Registration</0> awaits you."
+    },
+    "errorMessages": {
+      "requiredField": "Field is required",
+      "invalidEmail": "Invalid email address",
+      "shortPassword": "Must be at least {{requiredLength}} symbols"
+    }
+  }
 }

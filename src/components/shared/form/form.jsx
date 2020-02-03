@@ -12,7 +12,8 @@ const Form = (props) => {
     errorMessage,
     submitting,
     title,
-    children
+    children,
+    sendButtonText
   } = props;
 
   const renderFields = () => {
@@ -38,7 +39,7 @@ const Form = (props) => {
           </div>
         )}
         <div className={styles.buttonGroup}>
-          <button disabled={submitting}>send</button>
+          <button disabled={submitting}>{sendButtonText}</button>
         </div>
       </form>
       {children}

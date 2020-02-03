@@ -4,6 +4,7 @@ import { FormName } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
+import { Trans, useTranslation } from 'react-i18next';
 
 import Form from '~components/shared/form';
 import * as PATH from '~routes/path';
@@ -11,6 +12,8 @@ import { userSignIn } from '~store/auth/actions';
 import { getError } from '~store/auth/selectors';
 
 const SignInPage = ({ fields, login, error }) => {
+  const { t, i18n } = useTranslation();
+
   const onSubmitHandler = (data) => login(data);
 
   const formProps = {
@@ -18,7 +21,8 @@ const SignInPage = ({ fields, login, error }) => {
     fields,
     form: 'signin',
     errorMessage: error,
-    title: 'Signin'
+    title: t('auth.signin.title'),
+    sendButtonText: t('auth.signin.sendButtonText')
   };
 
   return (
@@ -26,8 +30,9 @@ const SignInPage = ({ fields, login, error }) => {
       {() => (
         <Form {...formProps}>
           <SMessage>
-            New user? <Link to={PATH.AUTH + PATH.SIGNUP}>Registration</Link>{' '}
-            awaits you.
+            <Trans i18nKey={'auth.signin.message'}>
+              <Link to={PATH.AUTH + PATH.SIGNUP} />
+            </Trans>
           </SMessage>
         </Form>
       )}
@@ -60,3 +65,8 @@ const SMessage = styled.small`
     }
   }
 `;
+
+/*<Trans i18nKey={'auth.signin.message'}>
+              New user? <Link to={PATH.AUTH + PATH.SIGNUP}>Registration</Link>{' '}
+              awaits you.
+            </Trans>*/
