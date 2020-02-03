@@ -1,40 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as PATH from '~routes/path';
 import { getIsUser } from '~store/app/selectors';
 import { userLogout } from '~store/auth/actions';
 import UserProfile from './user-profile';
 import Brand from './brand';
+import NavList from './nav-list';
 
 import styles from './navbar.module.scss';
 
 const NavBar = ({ isUser, userLogout }) => {
+  const navListProps = { isUser, userLogout };
+
   return (
-    <div className={styles.navbar}>
+    <header className={styles.navbar}>
       <Brand />
-      <ul>
-        <li>
-          <NavLink to={`${PATH.FILMS}`} exact activeClassName={styles.active}>
-            Films
-          </NavLink>
-        </li>
-        <li>
-          {!isUser ? (
-            <NavLink
-              to={`${PATH.AUTH + PATH.SIGNIN}`}
-              activeClassName={styles.active}
-            >
-              Login
-            </NavLink>
-          ) : (
-            <a onClick={() => userLogout()}>Logout</a>
-          )}
-        </li>
-      </ul>
+      <NavList {...navListProps} />
       {isUser && <UserProfile />}
-    </div>
+    </header>
   );
 };
 

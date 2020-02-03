@@ -1,0 +1,22 @@
+.navList {
+  & ul {
+    display: flex;
+
+    & li {
+      margin: 5px;
+    }
+  }
+
+  & a {
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+.active {
+  opacity: 0.5;
+}
