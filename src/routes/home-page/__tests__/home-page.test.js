@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 
 import { HomePage } from '../home-page';
 import { Loader } from '~components/shared/loader';
@@ -13,8 +14,7 @@ describe('Home Page with...', () => {
     films: [],
     total: null,
     loading: false,
-    error: null,
-    location: {}
+    error: null
   };
 
   describe('Loader', () => {
@@ -23,13 +23,17 @@ describe('Home Page with...', () => {
       loading: true
     };
 
-    const wrapper = shallow(<HomePage {...nextProps} />);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[{ key: 'someKey' }]}>
+        <HomePage {...nextProps} />
+      </MemoryRouter>
+    );
 
     it('render correctly', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('contain', () => {
+    it('contains', () => {
       expect(wrapper.contains(<Loader />)).toEqual(true);
     });
   });
@@ -40,13 +44,17 @@ describe('Home Page with...', () => {
       error: 'Error message'
     };
 
-    const wrapper = shallow(<HomePage {...nextProps} />);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[{ key: 'someKey' }]}>
+        <HomePage {...nextProps} />
+      </MemoryRouter>
+    );
 
     it('render correctly', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('contain', () => {
+    it('contains', () => {
       expect(wrapper.contains(<ErrorMessage />)).toEqual(true);
     });
   });
@@ -54,16 +62,23 @@ describe('Home Page with...', () => {
   describe('Films list', () => {
     const nextProps = {
       ...props,
-      films: [{ name: 'name1' }, { name: 'name1' }]
+      films: [
+        { filmId: 'id1', name: 'name1' },
+        { filmId: 'id2', name: 'name2' }
+      ]
     };
 
-    const wrapper = shallow(<HomePage {...nextProps} />);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[{ key: 'someKey' }]}>
+        <HomePage {...nextProps} />
+      </MemoryRouter>
+    );
 
     it('render correctly', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('contain', () => {
+    it('contains', () => {
       expect(wrapper.find(FilmsList)).toHaveLength(1);
     });
   });
@@ -74,13 +89,17 @@ describe('Home Page with...', () => {
       total: 3
     };
 
-    const wrapper = shallow(<HomePage {...nextProps} />);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[{ key: 'someKey' }]}>
+        <HomePage {...nextProps} />
+      </MemoryRouter>
+    );
 
     it('render correctly', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('contain', () => {
+    it('contains', () => {
       expect(wrapper.find(Pagination)).toHaveLength(1);
     });
   });

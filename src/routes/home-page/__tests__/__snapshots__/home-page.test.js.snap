@@ -1,52 +1,1217 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Page with... Error message render correctly 1`] = `
-<Fragment>
-  <styled.div>
-    <ErrorMessage />
-  </styled.div>
-</Fragment>
+<MemoryRouter
+  initialEntries={
+    Array [
+      Object {
+        "key": "someKey",
+      },
+    ]
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "someKey",
+            "pathname": "/",
+            "search": "",
+          },
+        ],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "someKey",
+          "pathname": "/",
+          "search": "",
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <HomePage
+      error="Error message"
+      fetchFilms={[Function]}
+      films={Array []}
+      loading={false}
+      total={null}
+    >
+      <styled.div>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-EHOje",
+                "isStatic": false,
+                "lastClassName": "hlUVwp",
+                "rules": Array [
+                  "
+  min-height: 460px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-EHOje",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="sc-EHOje hlUVwp"
+          >
+            <ErrorMessage>
+              <h1>
+                Something went wrong...
+              </h1>
+            </ErrorMessage>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </HomePage>
+  </Router>
+</MemoryRouter>
 `;
 
 exports[`Home Page with... Films list render correctly 1`] = `
-<Fragment>
-  <styled.div>
-    <FilmsList
+<MemoryRouter
+  initialEntries={
+    Array [
+      Object {
+        "key": "someKey",
+      },
+    ]
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "someKey",
+            "pathname": "/",
+            "search": "",
+          },
+        ],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "someKey",
+          "pathname": "/",
+          "search": "",
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <HomePage
+      error={null}
+      fetchFilms={[Function]}
       films={
         Array [
           Object {
+            "filmId": "id1",
             "name": "name1",
           },
           Object {
-            "name": "name1",
+            "filmId": "id2",
+            "name": "name2",
           },
         ]
       }
-    />
-  </styled.div>
-</Fragment>
+      loading={false}
+      total={null}
+    >
+      <styled.div>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-EHOje",
+                "isStatic": false,
+                "lastClassName": "hlUVwp",
+                "rules": Array [
+                  "
+  min-height: 460px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-EHOje",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="sc-EHOje hlUVwp"
+          >
+            <FilmsList
+              films={
+                Array [
+                  Object {
+                    "filmId": "id1",
+                    "name": "name1",
+                  },
+                  Object {
+                    "filmId": "id2",
+                    "name": "name2",
+                  },
+                ]
+              }
+            >
+              <styled.section>
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-htpNat",
+                        "isStatic": false,
+                        "lastClassName": "gcwEVk",
+                        "rules": Array [
+                          "
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+",
+                        ],
+                      },
+                      "displayName": "styled.section",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-htpNat",
+                      "target": "section",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <section
+                    className="sc-htpNat gcwEVk"
+                  >
+                    <FilmsItem
+                      key="id1"
+                      name="name1"
+                    >
+                      <styled.div>
+                        <StyledComponent
+                          forwardedComponent={
+                            Object {
+                              "$$typeof": Symbol(react.forward_ref),
+                              "attrs": Array [],
+                              "componentStyle": ComponentStyle {
+                                "componentId": "sc-bwzfXH",
+                                "isStatic": false,
+                                "lastClassName": "bfdusG",
+                                "rules": Array [
+                                  "
+  --poster-height: 200px;
+  --poster-ratio: 0.7;
+
+  padding: 15px;
+
+  & > div {
+    position: relative;
+    //TODO: variables.js ?
+    width: calc(var(--poster-height) * var(--poster-ratio));
+    height: var(--poster-height);
+
+    overflow: hidden;
+
+    box-shadow: 0 0 10px 3px #888888;
+
+    transition: all 750ms ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 0 5px ",
+                                  ";
+    }
+  }
+
+  & h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    padding: 5px;
+
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+    text-align: center;
+
+    background-color: rgba(255, 255, 255, 0.75);
+
+    z-index: 100;
+  }
+
+  & img {
+    display: block;
+    width: calc(var(--poster-height) * var(--poster-ratio));
+    height: var(--poster-height);
+
+    transition: all 750ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+",
+                                ],
+                              },
+                              "displayName": "styled.div",
+                              "foldedComponentIds": Array [],
+                              "render": [Function],
+                              "styledComponentId": "sc-bwzfXH",
+                              "target": "div",
+                              "toString": [Function],
+                              "warnTooManyClasses": [Function],
+                              "withComponent": [Function],
+                            }
+                          }
+                          forwardedRef={null}
+                        >
+                          <div
+                            className="sc-bwzfXH bfdusG"
+                          >
+                            <div>
+                              <h3>
+                                name1
+                              </h3>
+                              <Loader>
+                                <styled.div>
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "sc-bdVaJa",
+                                          "isStatic": false,
+                                          "lastClassName": "bzUmdz",
+                                          "rules": Array [
+                                            "
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    & div {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: ",
+                                            ";
+      animation: ",
+                                            Keyframes {
+                                              "id": "sc-keyframes-dKEMqu",
+                                              "inject": [Function],
+                                              "name": "dKEMqu",
+                                              "rules": Array [
+                                                "@-webkit-keyframes dKEMqu{0%,100%{opacity:1;}50%{opacity:0.5;}}",
+                                                "@keyframes dKEMqu{0%,100%{opacity:1;}50%{opacity:0.5;}}",
+                                              ],
+                                              "toString": [Function],
+                                            },
+                                            " 1.2s linear infinite;
+
+      &:nth-child(1) {
+        top: 8px;
+        left: 8px;
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        top: 8px;
+        left: 32px;
+        animation-delay: -0.4s;
+      }
+
+      &:nth-child(3) {
+        top: 8px;
+        left: 56px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(4) {
+        top: 32px;
+        left: 8px;
+        animation-delay: -0.4s;
+      }
+
+      &:nth-child(5) {
+        top: 32px;
+        left: 32px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(6) {
+        top: 32px;
+        left: 56px;
+        animation-delay: -1.2s;
+      }
+
+      &:nth-child(7) {
+        top: 56px;
+        left: 8px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(8) {
+        top: 56px;
+        left: 32px;
+        animation-delay: -1.2s;
+      }
+
+      &:nth-child(9) {
+        top: 56px;
+        left: 56px;
+        animation-delay: -1.6s;
+      }
+    }
+  }
+",
+                                          ],
+                                        },
+                                        "displayName": "styled.div",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "sc-bdVaJa",
+                                        "target": "div",
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                  >
+                                    <div
+                                      className="sc-bdVaJa bzUmdz"
+                                    >
+                                      <div
+                                        className="lds-grid"
+                                      >
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                      </div>
+                                    </div>
+                                  </StyledComponent>
+                                </styled.div>
+                              </Loader>
+                              <img
+                                alt="name1"
+                                onError={[Function]}
+                                onLoad={[Function]}
+                                src="test-file-stub"
+                              />
+                            </div>
+                          </div>
+                        </StyledComponent>
+                      </styled.div>
+                    </FilmsItem>
+                    <FilmsItem
+                      key="id2"
+                      name="name2"
+                    >
+                      <styled.div>
+                        <StyledComponent
+                          forwardedComponent={
+                            Object {
+                              "$$typeof": Symbol(react.forward_ref),
+                              "attrs": Array [],
+                              "componentStyle": ComponentStyle {
+                                "componentId": "sc-bwzfXH",
+                                "isStatic": false,
+                                "lastClassName": "bfdusG",
+                                "rules": Array [
+                                  "
+  --poster-height: 200px;
+  --poster-ratio: 0.7;
+
+  padding: 15px;
+
+  & > div {
+    position: relative;
+    //TODO: variables.js ?
+    width: calc(var(--poster-height) * var(--poster-ratio));
+    height: var(--poster-height);
+
+    overflow: hidden;
+
+    box-shadow: 0 0 10px 3px #888888;
+
+    transition: all 750ms ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 0 5px ",
+                                  ";
+    }
+  }
+
+  & h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    padding: 5px;
+
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+    text-align: center;
+
+    background-color: rgba(255, 255, 255, 0.75);
+
+    z-index: 100;
+  }
+
+  & img {
+    display: block;
+    width: calc(var(--poster-height) * var(--poster-ratio));
+    height: var(--poster-height);
+
+    transition: all 750ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+",
+                                ],
+                              },
+                              "displayName": "styled.div",
+                              "foldedComponentIds": Array [],
+                              "render": [Function],
+                              "styledComponentId": "sc-bwzfXH",
+                              "target": "div",
+                              "toString": [Function],
+                              "warnTooManyClasses": [Function],
+                              "withComponent": [Function],
+                            }
+                          }
+                          forwardedRef={null}
+                        >
+                          <div
+                            className="sc-bwzfXH bfdusG"
+                          >
+                            <div>
+                              <h3>
+                                name2
+                              </h3>
+                              <Loader>
+                                <styled.div>
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "sc-bdVaJa",
+                                          "isStatic": false,
+                                          "lastClassName": "bzUmdz",
+                                          "rules": Array [
+                                            "
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    & div {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: ",
+                                            ";
+      animation: ",
+                                            Keyframes {
+                                              "id": "sc-keyframes-dKEMqu",
+                                              "inject": [Function],
+                                              "name": "dKEMqu",
+                                              "rules": Array [
+                                                "@-webkit-keyframes dKEMqu{0%,100%{opacity:1;}50%{opacity:0.5;}}",
+                                                "@keyframes dKEMqu{0%,100%{opacity:1;}50%{opacity:0.5;}}",
+                                              ],
+                                              "toString": [Function],
+                                            },
+                                            " 1.2s linear infinite;
+
+      &:nth-child(1) {
+        top: 8px;
+        left: 8px;
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        top: 8px;
+        left: 32px;
+        animation-delay: -0.4s;
+      }
+
+      &:nth-child(3) {
+        top: 8px;
+        left: 56px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(4) {
+        top: 32px;
+        left: 8px;
+        animation-delay: -0.4s;
+      }
+
+      &:nth-child(5) {
+        top: 32px;
+        left: 32px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(6) {
+        top: 32px;
+        left: 56px;
+        animation-delay: -1.2s;
+      }
+
+      &:nth-child(7) {
+        top: 56px;
+        left: 8px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(8) {
+        top: 56px;
+        left: 32px;
+        animation-delay: -1.2s;
+      }
+
+      &:nth-child(9) {
+        top: 56px;
+        left: 56px;
+        animation-delay: -1.6s;
+      }
+    }
+  }
+",
+                                          ],
+                                        },
+                                        "displayName": "styled.div",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "sc-bdVaJa",
+                                        "target": "div",
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                  >
+                                    <div
+                                      className="sc-bdVaJa bzUmdz"
+                                    >
+                                      <div
+                                        className="lds-grid"
+                                      >
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                        <div />
+                                      </div>
+                                    </div>
+                                  </StyledComponent>
+                                </styled.div>
+                              </Loader>
+                              <img
+                                alt="name2"
+                                onError={[Function]}
+                                onLoad={[Function]}
+                                src="test-file-stub"
+                              />
+                            </div>
+                          </div>
+                        </StyledComponent>
+                      </styled.div>
+                    </FilmsItem>
+                  </section>
+                </StyledComponent>
+              </styled.section>
+            </FilmsList>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </HomePage>
+  </Router>
+</MemoryRouter>
 `;
 
 exports[`Home Page with... Loader render correctly 1`] = `
-<Fragment>
-  <styled.div>
-    <Loader />
-  </styled.div>
-</Fragment>
+<MemoryRouter
+  initialEntries={
+    Array [
+      Object {
+        "key": "someKey",
+      },
+    ]
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "someKey",
+            "pathname": "/",
+            "search": "",
+          },
+        ],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "someKey",
+          "pathname": "/",
+          "search": "",
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <HomePage
+      error={null}
+      fetchFilms={[Function]}
+      films={Array []}
+      loading={true}
+      total={null}
+    >
+      <styled.div>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-EHOje",
+                "isStatic": false,
+                "lastClassName": "hlUVwp",
+                "rules": Array [
+                  "
+  min-height: 460px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-EHOje",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="sc-EHOje hlUVwp"
+          >
+            <Loader>
+              <styled.div>
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bdVaJa",
+                        "isStatic": false,
+                        "lastClassName": "bzUmdz",
+                        "rules": Array [
+                          "
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    & div {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: ",
+                          ";
+      animation: ",
+                          Keyframes {
+                            "id": "sc-keyframes-dKEMqu",
+                            "inject": [Function],
+                            "name": "dKEMqu",
+                            "rules": Array [
+                              "@-webkit-keyframes dKEMqu{0%,100%{opacity:1;}50%{opacity:0.5;}}",
+                              "@keyframes dKEMqu{0%,100%{opacity:1;}50%{opacity:0.5;}}",
+                            ],
+                            "toString": [Function],
+                          },
+                          " 1.2s linear infinite;
+
+      &:nth-child(1) {
+        top: 8px;
+        left: 8px;
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        top: 8px;
+        left: 32px;
+        animation-delay: -0.4s;
+      }
+
+      &:nth-child(3) {
+        top: 8px;
+        left: 56px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(4) {
+        top: 32px;
+        left: 8px;
+        animation-delay: -0.4s;
+      }
+
+      &:nth-child(5) {
+        top: 32px;
+        left: 32px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(6) {
+        top: 32px;
+        left: 56px;
+        animation-delay: -1.2s;
+      }
+
+      &:nth-child(7) {
+        top: 56px;
+        left: 8px;
+        animation-delay: -0.8s;
+      }
+
+      &:nth-child(8) {
+        top: 56px;
+        left: 32px;
+        animation-delay: -1.2s;
+      }
+
+      &:nth-child(9) {
+        top: 56px;
+        left: 56px;
+        animation-delay: -1.6s;
+      }
+    }
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.div",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bdVaJa",
+                      "target": "div",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <div
+                    className="sc-bdVaJa bzUmdz"
+                  >
+                    <div
+                      className="lds-grid"
+                    >
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                    </div>
+                  </div>
+                </StyledComponent>
+              </styled.div>
+            </Loader>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </HomePage>
+  </Router>
+</MemoryRouter>
 `;
 
 exports[`Home Page with... Pagination render correctly 1`] = `
-<Fragment>
-  <styled.div>
-    <FilmsList
+<MemoryRouter
+  initialEntries={
+    Array [
+      Object {
+        "key": "someKey",
+      },
+    ]
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "someKey",
+            "pathname": "/",
+            "search": "",
+          },
+        ],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "someKey",
+          "pathname": "/",
+          "search": "",
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <HomePage
+      error={null}
+      fetchFilms={[Function]}
       films={Array []}
-    />
-  </styled.div>
-  <Memo(Pagination)
-    currentPage={1}
-    limit={5}
-    sort={1}
-    total={3}
-  />
-</Fragment>
+      loading={false}
+      total={3}
+    >
+      <styled.div>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-EHOje",
+                "isStatic": false,
+                "lastClassName": "hlUVwp",
+                "rules": Array [
+                  "
+  min-height: 460px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-EHOje",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="sc-EHOje hlUVwp"
+          >
+            <FilmsList
+              films={Array []}
+            >
+              <styled.section>
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-htpNat",
+                        "isStatic": false,
+                        "lastClassName": "gcwEVk",
+                        "rules": Array [
+                          "
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+",
+                        ],
+                      },
+                      "displayName": "styled.section",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-htpNat",
+                      "target": "section",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <section
+                    className="sc-htpNat gcwEVk"
+                  />
+                </StyledComponent>
+              </styled.section>
+            </FilmsList>
+          </div>
+        </StyledComponent>
+      </styled.div>
+      <Memo(Pagination)
+        currentPage={1}
+        limit={5}
+        sort={1}
+        total={3}
+      >
+        <styled.ul>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-ifAKCX",
+                  "isStatic": false,
+                  "lastClassName": "kvFmnz",
+                  "rules": Array [
+                    "
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+",
+                  ],
+                },
+                "displayName": "styled.ul",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-ifAKCX",
+                "target": "ul",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <ul
+              className="sc-ifAKCX kvFmnz"
+            >
+              <PaginationItem
+                currentPage={1}
+                key="1"
+                page={1}
+                querySettings="limit=5&sort=1"
+              >
+                <styled.li
+                  currentPage={1}
+                  page={1}
+                >
+                  <StyledComponent
+                    currentPage={1}
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-bxivhb",
+                          "isStatic": false,
+                          "lastClassName": "iiFLJb",
+                          "rules": Array [
+                            "
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  margin: 2px;
+
+  border: 2px solid ",
+                            ";
+
+  overflow: hidden;
+
+  & a {
+    display: block;
+    padding: 10px;
+
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: ",
+                            [Function],
+                            ";
+
+    background-color: ",
+                            [Function],
+                            ";
+
+    opacity: 1;
+
+    &:hover {
+      color: white;
+
+      background-color: ",
+                            ";
+
+      opacity: 0.7;
+    }
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.li",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-bxivhb",
+                        "target": "li",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    page={1}
+                  >
+                    <li
+                      className="sc-bxivhb iiFLJb"
+                    >
+                      <Link
+                        to="/?limit=5&sort=1&page=1"
+                      >
+                        <LinkAnchor
+                          href="/?limit=5&sort=1&page=1"
+                          navigate={[Function]}
+                        >
+                          <a
+                            href="/?limit=5&sort=1&page=1"
+                            onClick={[Function]}
+                          >
+                            1
+                          </a>
+                        </LinkAnchor>
+                      </Link>
+                    </li>
+                  </StyledComponent>
+                </styled.li>
+              </PaginationItem>
+            </ul>
+          </StyledComponent>
+        </styled.ul>
+      </Memo(Pagination)>
+    </HomePage>
+  </Router>
+</MemoryRouter>
 `;
