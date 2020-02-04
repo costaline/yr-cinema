@@ -65,8 +65,3 @@ const SMessage = styled.small`
     }
   }
 `;
-
-/*<Trans i18nKey={'auth.signin.message'}>
-              New user? <Link to={PATH.AUTH + PATH.SIGNUP}>Registration</Link>{' '}
-              awaits you.
-            </Trans>*/
