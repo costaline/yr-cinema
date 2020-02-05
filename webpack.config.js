@@ -189,6 +189,7 @@ module.exports = (env = {}, { mode } = {}) => {
 
       splitChunks: {
         chunks: 'all',
+        hidePathInfo: true,
         cacheGroups: {
           react: {
             test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
@@ -198,6 +199,8 @@ module.exports = (env = {}, { mode } = {}) => {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
+            maxSize: 200000,
+            minSize: 200000,
             priority: -10
           }
         }
