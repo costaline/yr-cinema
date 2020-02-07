@@ -3,6 +3,7 @@
   "plugins": [
     "@babel/proposal-class-properties",
     "@babel/transform-runtime",
-    "@babel/proposal-export-default-from"
+    "@babel/proposal-export-default-from",
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }

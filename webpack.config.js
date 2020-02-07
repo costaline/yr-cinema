@@ -136,7 +136,7 @@ module.exports = (env = {}, { mode } = {}) => {
     output: {
       path: path.resolve(__dirname, './dist/'),
       filename: `${pathToOutputFile.js}${name}.js`,
-      publicPath: isProduction ? './' : '/'
+      publicPath: '/'
     },
 
     module: {

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import HomePage from './home-page';
-// TODO: fix lazy loading in production
-// const AuthPage = React.lazy(() => import('./auth-page'));
-import AuthPage from './auth-page';
+const AuthPage = React.lazy(() => import('./auth-page'));
 import { getIsUser } from '~store/app/selectors';
 import * as PATH from '~routes/path';
 import { withSuspense } from '~hocs/with-suspense';
