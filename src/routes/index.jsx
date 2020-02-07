@@ -8,6 +8,7 @@ const AuthPage = React.lazy(() => import('./auth-page'));
 import { getIsUser } from '~store/app/selectors';
 import * as PATH from '~routes/path';
 import { withSuspense } from '~hocs/with-suspense';
+import FilmInfoPage from './film-info-page';
 
 const Routes = ({ isUser }) => {
   return (
@@ -20,6 +21,7 @@ const Routes = ({ isUser }) => {
         ) : (
           <Route path={PATH.AUTH}>{withSuspense(AuthPage)}</Route>
         )}
+        <Route path={'/film-info'} render={() => <FilmInfoPage />} />
         <Redirect to={PATH.HOME} />
       </Switch>
     </StyledMain>
