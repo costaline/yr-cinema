@@ -142,7 +142,7 @@ module.exports = (env = {}, { mode } = {}) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(ts|tsx|js|jsx)$/,
           exclude: /node_modules/,
           use: 'babel-loader'
         },
@@ -221,7 +221,7 @@ module.exports = (env = {}, { mode } = {}) => {
     },
 
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
 
       alias: {
         '~src': getAlias('src'),

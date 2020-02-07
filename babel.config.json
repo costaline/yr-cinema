@@ -5,5 +5,11 @@
     "@babel/transform-runtime",
     "@babel/proposal-export-default-from",
     "@babel/plugin-syntax-dynamic-import"
+  ],
+  "overrides": [
+    {
+      "test": ["./src/**/*.ts", "./src/**/*.tsx"],
+      "presets": ["@babel/preset-typescript"]
+    }
   ]
 }
