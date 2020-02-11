@@ -15,13 +15,13 @@ const Routes = ({ isUser }) => {
     <StyledMain>
       <Switch>
         <Route path={PATH.HOME} exact render={() => <HomePage />} />
-        <Route path={PATH.FILMS} render={() => <HomePage />} />
+        <Route path={PATH.FILMS} exact render={() => <HomePage />} />
+        <Route path={`${PATH.FILMS}/:filmId`} render={() => <FilmInfoPage />} />
         {isUser ? (
           <Redirect to={PATH.HOME} />
         ) : (
           <Route path={PATH.AUTH}>{withSuspense(AuthPage)}</Route>
         )}
-        <Route path={'/film-info'} render={() => <FilmInfoPage />} />
         <Redirect to={PATH.HOME} />
       </Switch>
     </StyledMain>
