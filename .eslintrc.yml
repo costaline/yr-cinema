@@ -33,3 +33,22 @@ rules:
   react-hooks/rules-of-hooks: 2
   react-hooks/exhaustive-deps: 1
   prettier/prettier: 0
+overrides:
+  - {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      extends:
+        [
+          'plugin:@typescript-eslint/eslint-recommended',
+          'plugin:@typescript-eslint/recommended',
+          'prettier/@typescript-eslint',
+        ],
+      plugins: ['@typescript-eslint'],
+      rules:
+        {
+          react/prop-types: 0,
+          '@typescript-eslint/interface-name-prefix':
+            [1, { prefixWithI: always }],
+          '@typescript-eslint/ban-ts-ignore': 1,
+        },
+    }
