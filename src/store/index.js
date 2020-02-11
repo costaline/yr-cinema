@@ -6,11 +6,13 @@ import { reducer as formReducer } from 'redux-form';
 import { filmsReducer } from './films/reducer';
 import { authReducer } from './auth/reducer';
 import { appReducer } from './app/reducer';
+import { filmInfoReducer } from './film-info/reducer';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   films: filmsReducer,
+  filmInfo: filmInfoReducer,
   form: formReducer
 });
 
