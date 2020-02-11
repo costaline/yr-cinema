@@ -1,21 +1,28 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import T from 'prop-types';
 import styled from 'styled-components';
 
 import FilmsItem from '~components/home-page/films-item';
 
 export const FilmsList = ({ films }) => {
+  const history = useHistory();
+
   return (
     <StyledSection>
       {films.map((film) => {
-        const { name, posterURL } = film;
+        const { filmId, name, posterURL } = film;
 
         const filmsItemProps = {
           name,
           posterURL
         };
 
-        return <FilmsItem key={film.filmId} {...filmsItemProps} />;
+        return (
+          <div key={filmId} onClick={() => history.push(`/films/${filmId}`)}>
+            <FilmsItem {...filmsItemProps} />
+          </div>
+        );
       })}
     </StyledSection>
   );
