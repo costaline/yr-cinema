@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const db = axios.create({
+export const db = axios.create({
   baseURL: 'https://yr-cinema.firebaseio.com/'
 });
 
