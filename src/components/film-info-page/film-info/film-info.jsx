@@ -1,5 +1,10 @@
 import React from 'react';
 import * as T from 'prop-types';
+import { formatDistanceToNow } from 'date-fns';
+
+import defaultPoster from './default-poster.png';
+
+import styles from './film-info.module.scss';
 
 /**
  * Info about film
@@ -27,14 +32,20 @@ const FilmInfo = ({ info }) => {
   } = info;
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <img src={posterURL} alt={name} />
-      <p>{description}</p>
-      <p>{slogan}</p>
-      <p>{year}</p>
-      <p>{country.join(', ')}</p>
-      <small>{timestamp}</small>
+    <div className={styles.filmInfo}>
+      <h2 className={styles.title}>{name}</h2>
+      <img
+        className={styles.poster}
+        src={posterURL || defaultPoster}
+        alt={name}
+      />
+      <p className={styles.description}>{description}</p>
+      <p className={styles.slogan}>{slogan}</p>
+      <p className={styles.year}>{year}</p>
+      <p className={styles.country}>{country.join(', ')}</p>
+      <small className={styles.date}>
+        {formatDistanceToNow(new Date(timestamp), { addSuffix: true })}
+      </small>
     </div>
   );
 };
