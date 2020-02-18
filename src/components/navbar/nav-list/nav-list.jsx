@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import T from 'prop-types';
 
 import * as PATH from '~routes/path';
 
@@ -14,6 +15,17 @@ const NavList = ({ isUser, userLogout }) => {
             Films
           </NavLink>
         </li>
+        {isUser && (
+          <li>
+            <NavLink
+              to={PATH.FILMS + PATH.ADD}
+              exact
+              activeClassName={styles.active}
+            >
+              Add Film
+            </NavLink>
+          </li>
+        )}
         <li>
           {!isUser ? (
             <NavLink
@@ -32,3 +44,8 @@ const NavList = ({ isUser, userLogout }) => {
 };
 
 export default NavList;
+
+NavList.propTypes = {
+  isUser: T.bool.isRequired,
+  userLogout: T.func
+};
