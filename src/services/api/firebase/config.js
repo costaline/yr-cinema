@@ -1,5 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/storage';
+import 'firebase/database';
 
 const config = {
   apiKey: process.env.APP_API_KEY,
@@ -10,7 +12,7 @@ const config = {
   messagingSenderId: process.env.APP_MESSAGING_SENDER_ID
 };
 
-firebase.initializeApp(config);
+export const app = firebase.initializeApp(config);
 
 const getUserProfile = (user) => ({
   name: user.displayName,
@@ -22,7 +24,7 @@ const getUserProfile = (user) => ({
 
 export const doCreateUserWithEmailAndPassword = async (email, password) => {
   try {
-    await firebase.auth().createUserWithEmailAndPassword(email, password);
+    await app.auth().createUserWithEmailAndPassword(email, password);
   } catch (error) {
     throw new Error(error);
   }
@@ -30,14 +32,14 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
 
 export const doSignInWithEmailAndPassword = async (email, password) => {
   try {
-    await firebase.auth().signInWithEmailAndPassword(email, password);
+    await app.auth().signInWithEmailAndPassword(email, password);
   } catch (error) {
     throw new Error(error);
   }
 };
 
 export const doOnAuthStateChanged = (onUser, onNoUser) => {
-  firebase.auth().onAuthStateChanged((user) => {
+  app.auth().onAuthStateChanged((user) => {
     if (user) {
       const profile = getUserProfile(user);
       onUser(profile);
@@ -48,7 +50,7 @@ export const doOnAuthStateChanged = (onUser, onNoUser) => {
 };
 
 export const getCurrentUser = () => {
-  const user = firebase.auth().currentUser;
+  const user = app.auth().currentUser;
 
   if (user) {
     return getUserProfile(user);
@@ -58,7 +60,7 @@ export const getCurrentUser = () => {
 
 export const logoutUser = async () => {
   try {
-    await firebase.auth().signOut();
+    await app.auth().signOut();
   } catch (error) {
     throw new Error(error);
   }
