@@ -7,12 +7,14 @@ import { filmsReducer } from './films/reducer';
 import { authReducer } from './auth/reducer';
 import { appReducer } from './app/reducer';
 import { filmInfoReducer } from './film-info/reducer';
+import { addFilmReducer } from './add-film/reducer';
 
 export const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   films: filmsReducer,
   filmInfo: filmInfoReducer,
+  addFilm: addFilmReducer,
   form: formReducer
 });
 
